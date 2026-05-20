@@ -82,15 +82,29 @@ function ServicesIndex() {
           })}
         </ul>
 
-        <div className="mt-10 rounded-xl border border-dashed border-border bg-muted/30 p-5 md:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+        <a
+          href={`https://wa.me/919650297779?text=${encodeURIComponent(
+            lang === "hi"
+              ? "नमस्ते, मुझे एक compliance service चाहिए जो आपकी list में नहीं है।"
+              : "Hi, I need a compliance service that isn't on your list.",
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-10 rounded-xl border border-dashed border-border bg-muted/30 p-5 md:p-6 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 hover:border-accent transition-colors"
+        >
           <MessageCircle className="w-6 h-6 text-accent shrink-0" />
           <p className="text-sm md:text-base text-foreground">
             {lang === "hi"
               ? "कुछ और चाहिए? WhatsApp करें "
               : "Need something else? WhatsApp us at "}
-            <span className="font-medium">+91 [WABA placeholder]</span>
+            <span className="font-medium text-primary">+91 96502 97779</span>
+            <span className="block mt-1 text-xs text-muted-foreground">
+              {lang === "hi"
+                ? "जवाब आमतौर पर 2 घंटे के अंदर, कार्य दिवसों पर।"
+                : "Usually replied within 2 hours, working days."}
+            </span>
           </p>
-        </div>
+        </a>
       </section>
     </main>
   );

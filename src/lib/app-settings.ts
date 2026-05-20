@@ -8,9 +8,9 @@ export type PublicSettingKey =
   | "whatsapp_default_message_hi";
 
 const DEFAULTS: Record<PublicSettingKey, string> = {
-  upi_id: "ugrowth@upi",
-  upi_payee_name: "UGrowth Consultancy",
-  whatsapp_number: "+919999999999",
+  upi_id: "surendra01-3@okicici",
+  upi_payee_name: "Surendra Kulshrestha",
+  whatsapp_number: "+919650297779",
   whatsapp_default_message_en:
     "Hi UGrowth team, I would like to know more about your services.",
   whatsapp_default_message_hi:

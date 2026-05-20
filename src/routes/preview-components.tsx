@@ -218,8 +218,8 @@ function PreviewComponents() {
         <div className="flex flex-wrap gap-3">
           <Badge variant="free">Free</Badge>
           <Badge variant="new">New</Badge>
-          <Badge variant="certified">MEPSC Certified</Badge>
-          <Badge variant="govt">Govt Recognised</Badge>
+          <Badge variant="certified">MEPSC Certificate</Badge>
+          <Badge variant="govt">Captain-Led</Badge>
           <Badge variant="default">Default</Badge>
           <Badge variant="secondary">Secondary</Badge>
           <Badge variant="outline">Outline</Badge>

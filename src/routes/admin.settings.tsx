@@ -29,9 +29,9 @@ const GROUPS: Array<{ title: string; keys: string[] }> = [
 ];
 
 const LABELS: Record<string, string> = {
-  upi_id: "UPI VPA (e.g. ugrowth@upi)",
-  upi_payee_name: "UPI payee name",
-  whatsapp_number: "WhatsApp number (E.164, e.g. +919876543210)",
+  upi_id: "UPI VPA (e.g. surendra01-3@okicici)",
+  upi_payee_name: "UPI payee name (shown on the QR — e.g. Surendra Kulshrestha)",
+  whatsapp_number: "WhatsApp number (E.164, e.g. +919650297779)",
   whatsapp_default_message_en: "Default WhatsApp message — English",
   whatsapp_default_message_hi: "Default WhatsApp message — Hindi",
 };

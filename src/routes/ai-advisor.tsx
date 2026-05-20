@@ -102,8 +102,8 @@ function getAnonId(): string {
 
 function welcomeText(lang: "en" | "hi") {
   return lang === "hi"
-    ? "नमस्ते। मैं UGrowth Consultancy सलाहकार हूं, Captain Ankur Kulshrestha की methodology पर trained। अपना practice शुरू करने या चलाने के बारे में कुछ भी पूछें — niche, pricing, business setup, first client outreach, compliance में मदद। आपके पास रोज़ 30 मुफ़्त messages हैं। पहले बताएं आप अपनी journey में कहां हैं।"
-    : "Namaste. I am the UGrowth Consultancy Advisor, trained on Captain Ankur Kulshrestha's methodology — the same one used at IICTN and University of Mumbai's beauty & wellness curriculum. Ask me anything about starting or running your practice in India — niche selection, pricing, business setup, first-client outreach, compliance, daily questions. You have 30 free messages a day. Tell me where you are in your journey, and we'll go from there.";
+    ? "नमस्ते। मैं UGrowth Advisor हूं — एक chatbot जो Captain Ankur Kulshrestha की methodology पर trained है। अपना practice शुरू करने या चलाने के बारे में कुछ भी पूछें — niche, pricing, business setup, first client outreach, compliance में मदद। 5 questions बिना signup के मुफ़्त, फिर एक free account बनाएं और रोज़ 30 messages। Captain से directly बात करनी हो: हर गुरुवार 4–5 PM IST paid live workshop, या हर शुक्रवार 7–8 PM IST free open WhatsApp hour। अब बताएं, आप अपनी journey में कहां हैं।"
+    : "Namaste. I am the UGrowth Advisor — a chatbot trained on Captain Ankur Kulshrestha's complete methodology (Brochures A + B). Ask me anything about starting or running your own practice in India — niche selection, pricing, business setup, first-client outreach, compliance, the awkward family questions. You get 5 free questions without signup, then create a free account for 30 messages per day. To reach Captain Ankur himself: every Thursday 4–5 PM IST he runs a live paid workshop on WhatsApp (topics rotate — pricing, outreach, niche, GST), and every Friday 7–8 PM IST he runs a free open WhatsApp hour where you can ask anything. Now tell me where you are in your journey, and we'll go from there.";
 }
 
 const SUGGESTIONS_EN = [

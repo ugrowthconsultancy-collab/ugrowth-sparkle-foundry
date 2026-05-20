@@ -12,15 +12,17 @@ export function Footer() {
         { label: t("nav.findMentor"), to: "/find-a-mentor" },
         { label: t("nav.cohort"), to: "/cohort" },
         { label: t("nav.services"), to: "/services" },
-        { label: t("nav.resources"), to: "/resources" },
+        { label: "Workshops", to: "/workshops" },
+        { label: "Founder Circles", to: "/circles" },
       ],
     },
     {
       title: "RESOURCES",
       links: [
         { label: t("nav.resources"), to: "/resources" },
-        { label: "Blog", to: "/blog" },
-        { label: "FAQ", to: "/faq" },
+        { label: "AI Advisor", to: "/ai-advisor" },
+        { label: "About", to: "/about" },
+        { label: "Support us", to: "/support" },
       ],
     },
     {
@@ -28,9 +30,6 @@ export function Footer() {
       links: [
         { label: "Privacy Policy", to: "/privacy" },
         { label: "Terms of Service", to: "/terms" },
-        { label: "DPDP Compliance", to: "/dpdp" },
-        { label: "Grievance Officer", to: "/grievance" },
-        { label: "Contact", to: "/contact" },
       ],
     },
   ] as const;
@@ -85,8 +84,10 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <WhatsAppButton variant="ghost" context="footer" />
             <a
-              href="#"
-              aria-label="LinkedIn"
+              href="https://www.linkedin.com/in/captainankurkulshrestha"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Captain Ankur Kulshrestha on LinkedIn"
               className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground hover:text-accent hover:border-accent transition-colors"
             >
               <Linkedin className="h-4 w-4" />

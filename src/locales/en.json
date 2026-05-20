@@ -2,7 +2,7 @@
   "nav": {
     "findMentor": "Find a Mentor",
     "resources": "Resources",
-    "cohort": "Cohort",
+    "cohort": "The Batch",
     "services": "Services",
     "about": "About",
     "login": "Login",
@@ -13,13 +13,13 @@
     "menu": "Menu"
   },
   "hero": {
-    "title": "Free help to start your own practice in India.",
-    "subtitle": "Real methodology. Real tools. Real mentors. No catch.",
+    "title": "Leave the job. Don't leave the income.",
+    "subtitle": "Free playbook + free AI advisor + a 12-week batch, built by Captain Ankur Kulshrestha (Retd, Indian Navy) for Indians starting their own work — freelancers, founders, returnees, side-hustlers, first-gen practitioners. From job to first paying client in 90 days — or your money back.",
     "ctaPrimary": "Try the free AI Advisor",
-    "ctaSecondary": "Get the free playbook",
-    "badge1": "Methodology certified by MEPSC, Government of India",
-    "badge2": "University of Mumbai Board of Studies affiliated",
-    "badge3": "UGrowth Consultancy Pvt Ltd"
+    "ctaSecondary": "Get the free playbook (100 pages)",
+    "badge1": "100% refund if no paying client by Day 90",
+    "badge2": "20–25 founders per batch · Captain on every session",
+    "badge3": "Built for India — GST, Udyam, MSMED, B2B payment cycles"
   },
   "audience": {
     "title": "Which one is you?",
@@ -48,18 +48,18 @@
     "tryFree": "Try it free"
   },
   "cohort": {
-    "title": "Our 12-week training",
-    "b1": "6 weeks foundation — methodology, mindset, market",
-    "b2": "4 weeks brand + pricing — niche, rate card, positioning",
-    "b3": "2 weeks first client outreach — pipeline, intake, close",
-    "b4": "Capstone project — your first real engagement",
-    "cert": "Government-recognised certification (MEPSC NSQF Level 5).",
+    "title": "The 12-week MEPSC batch",
+    "b1": "Weeks 1–4 · Foundation — self-audit, niche, demand test, legal setup",
+    "b2": "Weeks 5–8 · Presence — origin story, LinkedIn, three-tier rate card",
+    "b3": "Weeks 9–12 · Practice — 20 outreaches, 5 calls, first GST invoice",
+    "b4": "Week 13 · Capstone viva with Captain + MEPSC Certificate in Professional, Business & Management Consultancy",
+    "cert": "Government of India recognised credential. 20–25 founders per batch. Captain on every session.",
     "next": "Next batch",
     "seats": "Seats",
     "price": "Price",
-    "priceNote": "({next} from Cohort 2)",
+    "priceNote": "({{next}} from Batch 2)",
     "apply": "Apply for the next batch",
-    "tba": "TBA",
+    "tba": "TBA — join the waitlist",
     "loading": "Loading…"
   },
   "services": {
@@ -91,8 +91,8 @@
   "sticky": { "label": "Try AI Advisor (free)" },
   "footer": {
     "tagline": "Free help to start your own practice in India. Real methodology, real tools, real outcomes. No catch.",
-    "cert": "Methodology certified by MEPSC, Ministry of Skill Development & Entrepreneurship.",
-    "affil": "University of Mumbai Board of Studies affiliated.",
+    "cert": "Built and led by Captain Ankur Kulshrestha (Retd), Indian Navy.",
+    "affil": "Certificate in Professional, Business and Management Consultancy, under the MEPSC (Management & Entrepreneurship and Professional Skills Council) framework.",
     "copyright": "© 2026 UGrowth Consultancy Pvt Ltd. Made with care for Indian small business owners."
   },
   "login": {
@@ -142,7 +142,7 @@
     "cards": {
       "ai": "AI Advisor",
       "tools": "Free Tools",
-      "cohort": "Cohort Status",
+      "cohort": "My Batch Status",
       "orders": "My Orders"
     }
   },

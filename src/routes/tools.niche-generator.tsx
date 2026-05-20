@@ -40,7 +40,7 @@ export const Route = createFileRoute("/tools/niche-generator")({
       {
         property: "og:description",
         content:
-          "Get 3 sharp niche statements for your consulting practice in 5 minutes.",
+          "Get 3 sharp niche statements for your own practice in 5 minutes.",
       },
       { property: "og:url", content: "/tools/niche-generator" },
     ],
@@ -70,7 +70,7 @@ const initial: Answers = {
 const FAQ = [
   {
     q: "Is this really free? What's the catch?",
-    a: "It's genuinely free. We're UGrowth Consultancy — we make money from our paid cohort and done-for-you services. Free tools build trust. No catch.",
+    a: "It's genuinely free. We're UGrowth Consultancy — we make money from our paid batch and done-for-you services. Free tools build trust. No catch.",
   },
   {
     q: "Will I get spammed if I share my email?",

@@ -18,27 +18,24 @@ import "@/lib/i18n";
 import { useLanguage } from "@/hooks/use-language";
 
 function NotFoundComponent() {
+  // Header + Footer are already rendered by RootComponent — don't render them again here.
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex-1 flex items-center justify-center px-4 py-16">
-        <div className="max-w-md text-center">
-          <h1 className="text-7xl font-semibold text-primary">404</h1>
-          <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            The page you're looking for doesn't exist or has been moved.
-          </p>
-          <div className="mt-6">
-            <Link
-              to="/"
-              className="inline-flex min-h-11 items-center justify-center rounded-md bg-accent px-5 text-sm font-medium text-accent-foreground hover:bg-accent/90"
-            >
-              Go home
-            </Link>
-          </div>
+    <div className="flex-1 flex items-center justify-center px-4 py-16">
+      <div className="max-w-md text-center">
+        <h1 className="text-7xl font-semibold text-primary">404</h1>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          The page you're looking for doesn't exist or has been moved.
+        </p>
+        <div className="mt-6">
+          <Link
+            to="/"
+            className="inline-flex min-h-11 items-center justify-center rounded-md bg-accent px-5 text-sm font-medium text-accent-foreground hover:bg-accent/90"
+          >
+            Go home
+          </Link>
         </div>
-      </main>
-      <Footer />
+      </div>
     </div>
   );
 }
@@ -97,9 +94,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "UGrowth Consultancy — Start your own practice in India" },
-      { name: "description", content: "UGrowth Foundations provides a foundational design system for a premium Indian platform empowering professionals to launch consulting practices." },
-      { property: "og:description", content: "UGrowth Foundations provides a foundational design system for a premium Indian platform empowering professionals to launch consulting practices." },
-      { name: "twitter:description", content: "UGrowth Foundations provides a foundational design system for a premium Indian platform empowering professionals to launch consulting practices." },
+      { name: "description", content: "Free help for Indians starting their own work — freelancers, founders, returning professionals, side-hustlers. Methodology by Captain Ankur Kulshrestha (Retd, Indian Navy)." },
+      { property: "og:description", content: "Free help for Indians starting their own work — freelancers, founders, returning professionals, side-hustlers. Methodology by Captain Ankur Kulshrestha (Retd, Indian Navy)." },
+      { name: "twitter:description", content: "Free help for Indians starting their own work — freelancers, founders, returning professionals, side-hustlers. Methodology by Captain Ankur Kulshrestha (Retd, Indian Navy)." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fe9d1e20-483f-4fcf-8cee-05415498dcc0/id-preview-6632f09e--d3c85c13-0570-4c80-a1d5-5ac2cd5591a7.lovable.app-1779290679412.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/fe9d1e20-483f-4fcf-8cee-05415498dcc0/id-preview-6632f09e--d3c85c13-0570-4c80-a1d5-5ac2cd5591a7.lovable.app-1779290679412.png" },
     ],

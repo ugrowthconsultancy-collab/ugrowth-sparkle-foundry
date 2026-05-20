@@ -13,13 +13,13 @@
     "menu": "मेन्यू"
   },
   "hero": {
-    "title": "अपना खुद का काम शुरू करने में निःशुल्क मदद।",
-    "subtitle": "असली तरीका। असली औज़ार। असली मेंटर। कोई जाल नहीं।",
+    "title": "नौकरी छोड़िए। आमदनी मत छोड़िए।",
+    "subtitle": "मुफ़्त playbook + मुफ़्त AI सलाहकार + 12-हफ़्ते का batch, Captain Ankur Kulshrestha (Retd, Indian Navy) ने उन Indians के लिए बनाया है जो अपना खुद का काम शुरू करना चाहते हैं — freelancers, founders, career break से लौटने वाले, side-hustlers, first-gen practitioners। 90 दिन में नौकरी से पहला paying client तक — या पूरा पैसा वापस।",
     "ctaPrimary": "मुफ़्त AI सलाहकार से बात करें",
-    "ctaSecondary": "मुफ़्त गाइड डाउनलोड करें",
-    "badge1": "MEPSC, भारत सरकार द्वारा प्रमाणित",
-    "badge2": "Mumbai University Board of Studies से संबद्ध",
-    "badge3": "UGrowth Consultancy Pvt Ltd"
+    "ctaSecondary": "मुफ़्त playbook डाउनलोड करें (100 पन्ने)",
+    "badge1": "90 दिन में paying client नहीं तो 100% refund",
+    "badge2": "हर batch में 20–25 founders · हर session पर Captain",
+    "badge3": "India के लिए — GST, Udyam, MSMED, B2B payment cycles"
   },
   "audience": {
     "title": "आप कौन हैं?",
@@ -48,18 +48,18 @@
     "tryFree": "मुफ़्त में आज़माएं"
   },
   "cohort": {
-    "title": "हमारी 12 हफ़्ते की ट्रेनिंग",
-    "b1": "6 हफ़्ते foundation — methodology, mindset, market",
-    "b2": "4 हफ़्ते brand + pricing — niche, rate card, positioning",
-    "b3": "2 हफ़्ते पहला client outreach — pipeline, intake, close",
-    "b4": "Capstone project — आपका पहला असली engagement",
-    "cert": "सरकारी मान्यता प्राप्त सर्टिफिकेट (MEPSC NSQF Level 5)।",
+    "title": "12-हफ़्ते का MEPSC batch",
+    "b1": "हफ़्ते 1–4 · Foundation — self-audit, niche, demand test, legal setup",
+    "b2": "हफ़्ते 5–8 · Presence — origin story, LinkedIn, three-tier rate card",
+    "b3": "हफ़्ते 9–12 · Practice — 20 outreaches, 5 calls, पहला GST invoice",
+    "b4": "हफ़्ता 13 · Captain के साथ Capstone viva + MEPSC Certificate in Professional, Business & Management Consultancy",
+    "cert": "भारत सरकार से मान्यता प्राप्त। हर batch में 20–25 founders। हर session पर Captain।",
     "next": "अगला Batch",
     "seats": "Seats",
     "price": "Price",
-    "priceNote": "(Cohort 2 से {next})",
+    "priceNote": "(Batch 2 से {{next}})",
     "apply": "अगले batch के लिए apply करें",
-    "tba": "जल्द घोषित",
+    "tba": "जल्द — waitlist join करें",
     "loading": "लोड हो रहा है…"
   },
   "services": {
@@ -91,8 +91,8 @@
   "sticky": { "label": "AI Advisor मुफ़्त में आज़माएं" },
   "footer": {
     "tagline": "अपना खुद का काम शुरू करने में निःशुल्क मदद। असली तरीका, असली औज़ार, असली नतीजे। कोई जाल नहीं।",
-    "cert": "Methodology MEPSC, Ministry of Skill Development & Entrepreneurship द्वारा प्रमाणित।",
-    "affil": "Mumbai University Board of Studies से संबद्ध।",
+    "cert": "Captain Ankur Kulshrestha (Retd), Indian Navy द्वारा निर्मित और नेतृत्व।",
+    "affil": "Certificate in Professional, Business and Management Consultancy, MEPSC (Management & Entrepreneurship and Professional Skills Council) framework के अंतर्गत।",
     "copyright": "© 2026 UGrowth Consultancy Pvt Ltd। Indian small business owners के लिए पूरे प्यार से बनाया गया।"
   },
   "login": {
@@ -142,7 +142,7 @@
     "cards": {
       "ai": "AI सलाहकार",
       "tools": "मुफ़्त औज़ार",
-      "cohort": "Cohort स्थिति",
+      "cohort": "मेरा Batch Status",
       "orders": "मेरे Orders"
     }
   },

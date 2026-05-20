@@ -8,8 +8,6 @@ import {
   CalendarClock,
   Wallet,
   Activity,
-  Calculator,
-  Scale,
   ArrowRight,
   X as XIcon,
 } from "lucide-react";
@@ -37,7 +35,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Real methodology from a retired Indian Navy Captain. Free AI advisor, frameworks, and tools to start your consulting or services practice. MEPSC certified.",
+          "Real methodology from a retired Indian Navy Captain. Free AI advisor, frameworks, and tools to start your own practice in India. 12-week batch with MEPSC Certificate in Professional, Business and Management Consultancy on capstone.",
       },
       { property: "og:title", content: "UGrowth Consultancy — Start your own practice in India" },
       {
@@ -74,7 +72,7 @@ export const Route = createFileRoute("/")({
                   name: "Is the mentoring really free?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "Yes. Mentoring is always free. We earn from paid done-for-you services and the cohort programme.",
+                    text: "Yes. Mentoring is always free. We earn from paid done-for-you services and the 12-week batch.",
                   },
                 },
                 {
@@ -205,27 +203,66 @@ function HeroIllustration() {
   );
 }
 
+const BROCHURE_BASE =
+  "https://tpclwsivhsqfsmpueslj.supabase.co/storage/v1/object/public/brochure_pdfs";
+
 function BrochureModal({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false);
-  const { t } = useTranslation();
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{t("brochure.title")}</DialogTitle>
-          <DialogDescription>{t("brochure.desc")}</DialogDescription>
+          <DialogTitle>Get the free playbook</DialogTitle>
+          <DialogDescription>
+            Both brochures are free. No email gate, no signup. Captain wants you to read these
+            before you decide if the 12-week batch is for you.
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-3 pt-2">
-          <Input type="email" placeholder="you@example.com" disabled />
-          <Button
-            className="w-full"
-            disabled
-            onClick={() => ctaClick("brochure_submit", "/brochure")}
+          <a
+            href={`${BROCHURE_BASE}/brilliant-people-average-lives.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => ctaClick("brochure_download_a", "brochure_a.pdf")}
+            className="block rounded-lg border border-border bg-card p-4 hover:border-accent transition-colors"
           >
-            {t("brochure.submit")}
-          </Button>
-          <p className="text-xs text-muted-foreground">{t("brochure.note")}</p>
+            <div className="flex items-center gap-3">
+              <div className="text-2xl">📘</div>
+              <div className="flex-1">
+                <p className="font-display text-base text-primary">
+                  Brochure A — Brilliant People, Average Lives
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  The why. 42 pages. The 6 archetypes, 3 truths, the Freedom Trap.
+                </p>
+              </div>
+              <span className="text-xs text-accent font-medium shrink-0">PDF →</span>
+            </div>
+          </a>
+          <a
+            href={`${BROCHURE_BASE}/from-job-to-first-client-90-days.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => ctaClick("brochure_download_b", "brochure_b.pdf")}
+            className="block rounded-lg border border-border bg-card p-4 hover:border-accent transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <div className="text-2xl">📗</div>
+              <div className="flex-1">
+                <p className="font-display text-base text-primary">
+                  Brochure B — From Job to First Client in 90 Days
+                </p>
+                <p className="text-xs text-muted-foreground mt-0.5">
+                  The how. 58 pages. Week-by-week plan, rate card, GST timelines, tool stack.
+                </p>
+              </div>
+              <span className="text-xs text-accent font-medium shrink-0">PDF →</span>
+            </div>
+          </a>
+          <p className="text-xs text-muted-foreground pt-1">
+            Free forever. Share them with anyone you think they'd help.
+          </p>
         </div>
       </DialogContent>
     </Dialog>
@@ -365,10 +402,17 @@ function Stories() {
             <p className="mt-3 text-sm text-foreground">{s.line}</p>
           </Link>
         ))}
-        <div className="rounded-xl border border-dashed border-border bg-transparent p-6 flex flex-col justify-center">
-          <h3 className="font-display text-lg text-muted-foreground">{t("stories.more")}</h3>
-          <p className="mt-2 text-sm text-muted-foreground">{t("stories.moreSub")}</p>
-        </div>
+        <Link
+          to="/apply"
+          onClick={() => ctaClick("story_become_one", "/apply")}
+          className="rounded-xl border-2 border-dashed border-accent/40 bg-accent/5 p-6 flex flex-col justify-center hover:bg-accent/10 hover:border-accent transition-colors"
+        >
+          <h3 className="font-display text-lg text-primary">Be the next story</h3>
+          <p className="mt-2 text-sm text-foreground">
+            Cohort 1 applications are open. 25 seats. Captain personally reviews every application.
+          </p>
+          <p className="mt-3 text-sm text-accent font-medium">Apply for the next batch →</p>
+        </Link>
       </div>
     </Section>
   );
@@ -419,14 +463,48 @@ function AiPreview() {
 }
 
 const TOOLS = [
-  { icon: Target, title: "Niche Statement Generator", desc: "Find your kind of customer in 5 minutes", slug: "niche-generator" },
-  { icon: IndianRupee, title: "Three-Tier Rate Card Builder", desc: "What should you charge? Find out", slug: "rate-card-builder" },
-  { icon: FileCheck2, title: "GST Eligibility Checker", desc: "Do you need GST? Quick test", slug: "gst-checker" },
-  { icon: CalendarClock, title: "Compliance Calendar", desc: "What's your next deadline?", slug: "compliance-calendar" },
-  { icon: Wallet, title: "Working Capital Calculator", desc: "How much do clients owe you?", slug: "working-capital" },
-  { icon: Activity, title: "Founder Vital Signs Check", desc: "How healthy is your business?", slug: "vital-signs" },
-  { icon: Calculator, title: "Pricing Calculator", desc: "Real market rates in your city", slug: "pricing-calculator" },
-  { icon: Scale, title: "Should-I-Switch Calculator", desc: "Is JustDial / IndiaMART worth it for you?", slug: "should-i-switch" },
+  {
+    icon: Target,
+    title: "Niche Statement Generator",
+    desc: "Answer 4 fields. Get a niche line you can put on LinkedIn today.",
+    slug: "niche-generator",
+    live: true,
+  },
+  {
+    icon: IndianRupee,
+    title: "Three-Tier Rate Card Builder",
+    desc: "Real Indian market rates by city tier + experience. Print-ready.",
+    slug: "rate-card-builder",
+    live: true,
+  },
+  {
+    icon: FileCheck2,
+    title: "GST Eligibility Checker",
+    desc: "Do you actually need GST? 5-question diagnostic.",
+    slug: "gst-checker",
+    live: true,
+  },
+  {
+    icon: Wallet,
+    title: "Working Capital Calculator",
+    desc: "How much money are your clients sitting on?",
+    slug: "working-capital",
+    live: true,
+  },
+  {
+    icon: Activity,
+    title: "Founder Vital Signs",
+    desc: "10 questions. Score 0–100. Where your practice is fragile.",
+    slug: "vital-signs",
+    live: true,
+  },
+  {
+    icon: CalendarClock,
+    title: "Compliance Calendar",
+    desc: "GST, TDS, ROC dates for the next 12 months, your business type.",
+    slug: "compliance-calendar",
+    live: true,
+  },
 ] as const;
 
 function Tools() {
@@ -434,7 +512,10 @@ function Tools() {
   return (
     <Section id="tools" className="bg-secondary/40">
       <h2 className="font-display text-3xl md:text-4xl text-primary">{t("tools.title")}</h2>
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <p className="mt-3 text-sm text-muted-foreground max-w-2xl">
+        All free, all under 5 minutes, all built for Indian founders. No login, no email gate.
+      </p>
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {TOOLS.map((tool) => (
           <Link
             key={tool.slug}
@@ -539,11 +620,11 @@ function CohortBlock() {
 }
 
 const SERVICES = [
-  { name: "GST Registration", line: "Get GSTIN in 7 days", price: 1999, slug: "gst-registration" },
+  { name: "GST Registration", line: "GSTIN in 7 working days", price: 1999, slug: "gst-registration" },
   { name: "Udyam Registration", line: "MSME certificate, same week", price: 999, slug: "udyam-registration" },
-  { name: "Pvt Ltd Incorporation", line: "Company in 10–14 days", price: 6999, slug: "pvt-ltd-incorporation" },
-  { name: "LLP Incorporation", line: "Limited liability partnership", price: 4999, slug: "llp-incorporation" },
-  { name: "ROC Annual Filings", line: "Stay compliant, year-round", price: 6999, slug: "roc-annual-filings" },
+  { name: "Pvt Ltd Incorporation", line: "Company in 10–14 days", price: 6999, slug: "pvt-ltd" },
+  { name: "LLP Incorporation", line: "Limited liability partnership", price: 4999, slug: "llp" },
+  { name: "ROC Annual Filings", line: "Stay compliant, year-round", price: 6999, slug: "roc-annual-filing" },
   { name: "EPF Setup", line: "Employer EPF registration", price: 4999, slug: "epf-setup" },
   { name: "Trademark Filing", line: "Protect your brand name", price: 4999, slug: "trademark-filing" },
   { name: "FSSAI Registration", line: "Food business licence", price: 2499, slug: "fssai-registration" },
@@ -753,11 +834,139 @@ function StickyMobileCta() {
   );
 }
 
+function CaptainAccess() {
+  const ref = useSectionView("captain_access");
+  return (
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      id="captain-access"
+      className="border-y border-border bg-accent/5"
+    >
+      <div className="mx-auto max-w-[1280px] px-4 lg:px-6 py-10 md:py-14">
+        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-accent">
+          Three ways to learn from Captain
+        </p>
+        <h2 className="mt-2 font-display text-2xl md:text-3xl text-primary">
+          Free, paid-once, or the full 12 weeks. Your call.
+        </h2>
+        <div className="mt-6 grid gap-4 md:grid-cols-3">
+          <Link
+            to="/ai-advisor"
+            onClick={() => ctaClick("captain_access_ai", "/ai-advisor")}
+            className="rounded-xl border border-border bg-card p-5 hover:border-accent transition-colors"
+          >
+            <p className="font-display text-base text-primary">AI Advisor · free, 24×7</p>
+            <p className="mt-2 text-sm text-foreground leading-relaxed">
+              Captain's methodology trained into a chatbot. 30 messages a day free. English,
+              Hindi, Hinglish.
+            </p>
+            <p className="mt-3 text-xs text-accent font-medium">Start chatting →</p>
+          </Link>
+          <Link
+            to="/workshops"
+            onClick={() => ctaClick("captain_access_workshops", "/workshops")}
+            className="rounded-xl border border-border bg-card p-5 hover:border-accent transition-colors"
+          >
+            <p className="font-display text-base text-primary">
+              Thursday workshops · 4–5 PM IST
+            </p>
+            <p className="mt-2 text-sm text-foreground leading-relaxed">
+              Live 1-hour session with Captain every Thursday — one topic at a time
+              (pricing, outreach, niche, GST). ₹1,500–₹2,500.
+            </p>
+            <p className="mt-3 text-xs text-accent font-medium">See this week's topic →</p>
+          </Link>
+          <Link
+            to="/cohort"
+            onClick={() => ctaClick("captain_access_batch", "/cohort")}
+            className="rounded-xl border border-border bg-card p-5 hover:border-accent transition-colors"
+          >
+            <p className="font-display text-base text-primary">12-week batch · ₹30,000</p>
+            <p className="mt-2 text-sm text-foreground leading-relaxed">
+              Captain personally for 12 weeks, capstone defence, MEPSC certificate. 20–25
+              founders per batch. 100% refund by Day 90.
+            </p>
+            <p className="mt-3 text-xs text-accent font-medium">See the batch →</p>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CaptainOpenHour() {
+  const ref = useSectionView("captain_open_hour");
+  const url = `https://wa.me/919650297779?text=${encodeURIComponent(
+    "Hi Captain, I want to join the next Friday open WhatsApp hour. My question is: ",
+  )}`;
+  return (
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      id="captain-open-hour"
+      className="bg-primary text-primary-foreground"
+    >
+      <div className="mx-auto max-w-[1280px] px-4 lg:px-6 py-10 md:py-12 grid md:grid-cols-[1fr_auto] gap-6 items-center">
+        <div>
+          <p className="text-xs font-semibold tracking-[0.2em] uppercase text-accent">
+            Captain's open WhatsApp hour — free
+          </p>
+          <h2 className="mt-2 font-display text-2xl md:text-3xl text-primary-foreground">
+            Every Friday · 7–8 PM IST · ask Captain anything, no fee.
+          </h2>
+          <p className="mt-3 text-sm md:text-base text-primary-foreground/80 max-w-2xl leading-relaxed">
+            One hour a week, Captain answers questions personally on WhatsApp — niche,
+            pricing, exits, family conversations, refunds, GST, the awkward stuff. No batch
+            fee. No application. Send the question by Friday 4 PM and we'll add you to the
+            circle.
+          </p>
+        </div>
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => ctaClick("captain_open_hour_whatsapp", "wa.me")}
+          className="inline-flex min-h-12 items-center justify-center rounded-md bg-accent px-6 text-sm font-medium text-accent-foreground hover:bg-accent/90 whitespace-nowrap"
+        >
+          Send my question →
+        </a>
+      </div>
+    </section>
+  );
+}
+
+function ProofStrip() {
+  const ref = useSectionView("proof_strip");
+  return (
+    <section
+      ref={ref as React.RefObject<HTMLElement>}
+      id="proof-strip"
+      className="border-b border-border bg-card"
+    >
+      <div className="mx-auto max-w-[1280px] px-4 lg:px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        {[
+          { n: "1,000+", l: "founders mentored across 17 Indian cities" },
+          { n: "100 pages", l: "of free playbook — yours, no email gate" },
+          { n: "27 years", l: "Indian Navy + retail leadership behind Captain" },
+          { n: "Day 90", l: "or 100% refund if no path to a paying client" },
+        ].map((s) => (
+          <div key={s.l}>
+            <p className="font-display text-2xl md:text-3xl text-primary">{s.n}</p>
+            <p className="mt-1 text-xs md:text-sm text-muted-foreground leading-snug">{s.l}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function Home() {
   return (
     <>
       <Hero />
+      <ProofStrip />
       <Audience />
+      <CaptainAccess />
+      <CaptainOpenHour />
       <Stories />
       <AiPreview />
       <Tools />
@@ -765,10 +974,10 @@ function Home() {
       <Services />
       <TeaserBanner
         id="practice-launch"
-        heading="Launch your first 10 clients with a real marketing engine. AI + a real human. Indian context. ₹4,999/month."
-        cta="See how it works"
-        to="/services/practice-launch"
-        trackLabel="teaser_practice_launch"
+        heading="Never miss another GST or ROC deadline. Our monthly compliance subscription handles GSTR-1, GSTR-3B, TDS and AOC-4 / MGT-7 filings — ₹2,499/month, cancel anytime."
+        cta="See the subscription"
+        to="/services/compliance-subscription"
+        trackLabel="teaser_compliance_subscription"
       />
       <TeaserBanner
         id="circles"
