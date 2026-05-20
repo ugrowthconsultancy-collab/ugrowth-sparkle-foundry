@@ -598,13 +598,13 @@ function TeaserBanner({
     >
       <div className="mx-auto max-w-[1280px] px-4 lg:px-6 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
         <p className="text-base md:text-lg text-foreground max-w-3xl">{heading}</p>
-        <Link
-          to={to}
+        <a
+          href={to}
           onClick={() => ctaClick(trackLabel, to)}
           className="inline-flex items-center gap-1 font-medium text-accent whitespace-nowrap"
         >
           {cta} <ArrowRight className="h-4 w-4" />
-        </Link>
+        </a>
       </div>
     </section>
   );
