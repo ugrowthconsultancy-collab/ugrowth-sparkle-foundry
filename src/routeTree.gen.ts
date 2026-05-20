@@ -26,6 +26,8 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as TracksSlugRouteImport } from './routes/tracks.$slug'
+import { Route as ToolsRateCardBuilderRouteImport } from './routes/tools.rate-card-builder'
+import { Route as ToolsNicheGeneratorRouteImport } from './routes/tools.niche-generator'
 import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
 import { Route as StoriesSlugRouteImport } from './routes/stories.$slug'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
@@ -128,6 +130,16 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const TracksSlugRoute = TracksSlugRouteImport.update({
   id: '/tracks/$slug',
   path: '/tracks/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsRateCardBuilderRoute = ToolsRateCardBuilderRouteImport.update({
+  id: '/tools/rate-card-builder',
+  path: '/tools/rate-card-builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsNicheGeneratorRoute = ToolsNicheGeneratorRouteImport.update({
+  id: '/tools/niche-generator',
+  path: '/tools/niche-generator',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ToolsSlugRoute = ToolsSlugRouteImport.update({
@@ -254,6 +266,8 @@ export interface FileRoutesByFullPath {
   '/services/$slug': typeof ServicesSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
   '/tools/$slug': typeof ToolsSlugRoute
+  '/tools/niche-generator': typeof ToolsNicheGeneratorRoute
+  '/tools/rate-card-builder': typeof ToolsRateCardBuilderRoute
   '/tracks/$slug': typeof TracksSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
@@ -290,6 +304,8 @@ export interface FileRoutesByTo {
   '/services/$slug': typeof ServicesSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
   '/tools/$slug': typeof ToolsSlugRoute
+  '/tools/niche-generator': typeof ToolsNicheGeneratorRoute
+  '/tools/rate-card-builder': typeof ToolsRateCardBuilderRoute
   '/tracks/$slug': typeof TracksSlugRoute
   '/admin': typeof AdminIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
@@ -328,6 +344,8 @@ export interface FileRoutesById {
   '/services/$slug': typeof ServicesSlugRoute
   '/stories/$slug': typeof StoriesSlugRoute
   '/tools/$slug': typeof ToolsSlugRoute
+  '/tools/niche-generator': typeof ToolsNicheGeneratorRoute
+  '/tools/rate-card-builder': typeof ToolsRateCardBuilderRoute
   '/tracks/$slug': typeof TracksSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
@@ -367,6 +385,8 @@ export interface FileRouteTypes {
     | '/services/$slug'
     | '/stories/$slug'
     | '/tools/$slug'
+    | '/tools/niche-generator'
+    | '/tools/rate-card-builder'
     | '/tracks/$slug'
     | '/admin/'
     | '/admin/ai-conversations/$id'
@@ -403,6 +423,8 @@ export interface FileRouteTypes {
     | '/services/$slug'
     | '/stories/$slug'
     | '/tools/$slug'
+    | '/tools/niche-generator'
+    | '/tools/rate-card-builder'
     | '/tracks/$slug'
     | '/admin'
     | '/admin/ai-conversations/$id'
@@ -440,6 +462,8 @@ export interface FileRouteTypes {
     | '/services/$slug'
     | '/stories/$slug'
     | '/tools/$slug'
+    | '/tools/niche-generator'
+    | '/tools/rate-card-builder'
     | '/tracks/$slug'
     | '/admin/'
     | '/admin/ai-conversations/$id'
@@ -465,6 +489,8 @@ export interface RootRouteChildren {
   ServicesSlugRoute: typeof ServicesSlugRoute
   StoriesSlugRoute: typeof StoriesSlugRoute
   ToolsSlugRoute: typeof ToolsSlugRoute
+  ToolsNicheGeneratorRoute: typeof ToolsNicheGeneratorRoute
+  ToolsRateCardBuilderRoute: typeof ToolsRateCardBuilderRoute
   TracksSlugRoute: typeof TracksSlugRoute
 }
 
@@ -587,6 +613,20 @@ declare module '@tanstack/react-router' {
       path: '/tracks/$slug'
       fullPath: '/tracks/$slug'
       preLoaderRoute: typeof TracksSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/rate-card-builder': {
+      id: '/tools/rate-card-builder'
+      path: '/tools/rate-card-builder'
+      fullPath: '/tools/rate-card-builder'
+      preLoaderRoute: typeof ToolsRateCardBuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/niche-generator': {
+      id: '/tools/niche-generator'
+      path: '/tools/niche-generator'
+      fullPath: '/tools/niche-generator'
+      preLoaderRoute: typeof ToolsNicheGeneratorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tools/$slug': {
@@ -785,6 +825,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesSlugRoute: ServicesSlugRoute,
   StoriesSlugRoute: StoriesSlugRoute,
   ToolsSlugRoute: ToolsSlugRoute,
+  ToolsNicheGeneratorRoute: ToolsNicheGeneratorRoute,
+  ToolsRateCardBuilderRoute: ToolsRateCardBuilderRoute,
   TracksSlugRoute: TracksSlugRoute,
 }
 export const routeTree = rootRouteImport
