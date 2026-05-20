@@ -94,7 +94,7 @@ export function Header() {
             </div>
             <nav className="flex flex-col p-4 gap-1">
               {NAV.map((item) => (
-                // @ts-expect-error placeholder routes
+                
                 <Link
                   key={item.to}
                   to={item.to}
