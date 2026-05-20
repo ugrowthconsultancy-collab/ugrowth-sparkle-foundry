@@ -83,9 +83,10 @@
   --popover-foreground: oklch(0.18 0.03 260);
 
   /* Brand */
-  --primary: oklch(0.38 0.09 160);              /* deep emerald */
+  --primary: oklch(0.25 0.08 260);              /* deep navy blue */
   --primary-foreground: oklch(0.985 0.012 85);
-  --primary-glow: oklch(0.55 0.13 158);
+  --primary-glow: oklch(0.42 0.12 258);
+
 
   --secondary: oklch(0.95 0.02 80);
   --secondary-foreground: oklch(0.22 0.04 260);
@@ -102,14 +103,15 @@
 
   --border: oklch(0.9 0.015 80);
   --input: oklch(0.9 0.015 80);
-  --ring: oklch(0.55 0.13 158);
+  --ring: oklch(0.42 0.12 258);
 
   /* Gradients & shadows */
-  --gradient-hero: linear-gradient(135deg, oklch(0.38 0.09 160) 0%, oklch(0.55 0.13 158) 100%);
+  --gradient-hero: linear-gradient(135deg, oklch(0.25 0.08 260) 0%, oklch(0.42 0.12 258) 100%);
   --gradient-warm: linear-gradient(135deg, oklch(0.74 0.17 65) 0%, oklch(0.68 0.19 45) 100%);
+
   --gradient-subtle: linear-gradient(180deg, oklch(0.985 0.012 85) 0%, oklch(0.95 0.025 75) 100%);
 
-  --shadow-elegant: 0 20px 50px -20px color-mix(in oklab, oklch(0.38 0.09 160) 25%, transparent);
+  --shadow-elegant: 0 20px 50px -20px color-mix(in oklab, oklch(0.25 0.08 260) 30%, transparent);
   --shadow-warm: 0 18px 45px -18px color-mix(in oklab, oklch(0.74 0.17 65) 35%, transparent);
   --shadow-soft: 0 1px 3px oklch(0.18 0.03 260 / 0.06), 0 8px 24px oklch(0.18 0.03 260 / 0.06);
 
@@ -117,12 +119,13 @@
 
   --sidebar: oklch(0.97 0.018 80);
   --sidebar-foreground: oklch(0.18 0.03 260);
-  --sidebar-primary: oklch(0.38 0.09 160);
+  --sidebar-primary: oklch(0.25 0.08 260);
   --sidebar-primary-foreground: oklch(0.985 0.012 85);
   --sidebar-accent: oklch(0.94 0.015 80);
   --sidebar-accent-foreground: oklch(0.22 0.04 260);
   --sidebar-border: oklch(0.9 0.015 80);
-  --sidebar-ring: oklch(0.55 0.13 158);
+  --sidebar-ring: oklch(0.42 0.12 258);
+
 }
 
 .dark {
