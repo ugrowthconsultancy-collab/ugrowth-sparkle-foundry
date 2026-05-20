@@ -41,7 +41,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Free AI advisor, frameworks, and tools to start your consulting or services practice. MEPSC certified.",
+          "Free AI advisor, frameworks, and tools to start your own practice in India. 12-week batch issues a Certificate in Professional, Business and Management Consultancy under the MEPSC framework.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "/" },
@@ -589,13 +589,17 @@ function CohortBlock() {
         <div className="rounded-2xl border border-border bg-card p-6 lg:p-8">
           <p className="text-xs uppercase tracking-wider text-muted-foreground">{t("cohort.next")}</p>
           <p className="mt-2 font-display text-2xl text-primary">
-            {loaded ? (cohort?.name ?? t("cohort.tba")) : t("cohort.loading")}
+            {loaded ? (cohort?.name ?? "Batch 1 · Dates TBA") : "Batch 1 · Dates TBA"}
+          </p>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Apply now — Captain reviews every application within 5 working days. We'll
+            confirm a start date as soon as 20 seats are filled.
           </p>
           <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
             <div>
               <p className="text-muted-foreground">{t("cohort.seats")}</p>
               <p className="font-medium text-foreground">
-                {cohort ? `${cohort.remaining}/${cohort.max_seats}` : "—"}
+                {cohort ? `${cohort.remaining}/${cohort.max_seats}` : "20–25 per batch"}
               </p>
             </div>
             <div>
@@ -603,7 +607,7 @@ function CohortBlock() {
               <p className="font-medium text-foreground">
                 {formatINR(30000)}{" "}
                 <span className="text-xs text-muted-foreground">
-                  {t("cohort.priceNote", { next: formatINR(35000) })}
+                  ({formatINR(35000)} from Batch 2)
                 </span>
               </p>
             </div>
@@ -947,7 +951,7 @@ function ProofStrip() {
           { n: "1,000+", l: "founders mentored across 17 Indian cities" },
           { n: "100 pages", l: "of free playbook — yours, no email gate" },
           { n: "27 years", l: "Indian Navy + retail leadership behind Captain" },
-          { n: "Day 90", l: "or 100% refund if no path to a paying client" },
+          { n: "Day 90", l: "100% refund if no signed proposal or verbal commitment from a paying client" },
         ].map((s) => (
           <div key={s.l}>
             <p className="font-display text-2xl md:text-3xl text-primary">{s.n}</p>
@@ -964,9 +968,9 @@ function Home() {
     <>
       <Hero />
       <ProofStrip />
+      <CaptainOpenHour />
       <Audience />
       <CaptainAccess />
-      <CaptainOpenHour />
       <Stories />
       <AiPreview />
       <Tools />

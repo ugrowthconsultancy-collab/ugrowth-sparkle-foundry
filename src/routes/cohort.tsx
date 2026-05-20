@@ -133,7 +133,7 @@ function CohortPage() {
                 ₹30,000 for Batch 1 (launch pricing) · ₹35,000 from Batch 2 onwards
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
-                100% refund if you don't have a clear path to a paying client by Day 90.
+                100% refund if you don't have a signed proposal or a documented verbal commitment from a paying client by Day 90. ("Paying client" = an Indian individual or business who has explicitly said yes in writing or on a recorded call, with a proposed payment amount and timeline.)
               </p>
             </div>
             <div className="mt-6 md:mt-0 flex flex-col gap-2 md:items-end">
@@ -279,7 +279,7 @@ function CohortPage() {
               <h3 className="font-medium text-primary">What happens if I don't finish?</h3>
               <p className="mt-1 text-sm text-foreground">
                 You can defer once to the next batch, no charge. Beyond that, no refund — but the
-                refund policy above (no path to paying client by Day 90) still applies.
+                refund policy above (no signed proposal or verbal commitment by Day 90) still applies.
               </p>
             </div>
             <div>

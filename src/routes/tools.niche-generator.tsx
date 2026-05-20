@@ -390,17 +390,24 @@ function NicheGeneratorPage() {
     >
       {step === 1 && (
         <div>
-          <Label htmlFor="skill">Your skill or experience</Label>
+          <Label htmlFor="skill">Your skill, past experience, or what people already ask you for help with</Label>
           <Textarea
             id="skill"
             value={a.skill}
             onChange={(e) => setA({ ...a, skill: e.target.value })}
-            placeholder="e.g., 6 years of marketing for B2B SaaS companies"
+            placeholder="e.g., 6 years of marketing for B2B SaaS · HR head before my career break · the friend everyone asks for finance advice"
             className="mt-2 min-h-[100px]"
             maxLength={300}
           />
           <p className="mt-2 text-xs text-muted-foreground">
-            Examples: Marketing for SaaS · HR for IT companies · Bookkeeping for restaurants
+            Examples — you can describe a current job, a past role you took a break from, OR
+            simply the thing friends and family already ask you to help with for free. All three
+            work as starting points for a niche.
+          </p>
+          <p className="mt-2 text-xs text-muted-foreground">
+            On a career break? Returning to work? Just finished college? Write what you{" "}
+            <em>used to do</em>, or what you{" "}
+            <em>could do</em> if money wasn't an issue — that's the niche.
           </p>
         </div>
       )}
@@ -491,7 +498,7 @@ function NicheGeneratorPage() {
 }
 
 const STEP_TITLES = [
-  "What's your current main skill or experience?",
+  "What's your skill — current, past, or what others already ask you for?",
   "Who are 3 types of people or businesses who have asked you for help with this?",
   "Of those, which one would you most enjoy helping?",
   "What's the biggest specific problem they have that you can solve?",

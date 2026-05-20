@@ -67,7 +67,7 @@ function FindMentorPage() {
               <li>Captain on every session</li>
               <li>Lifetime alumni WhatsApp + monthly Q&amp;A</li>
               <li>₹30,000 (₹35,000 from Cohort 2)</li>
-              <li>100% refund if no clear path to paying client by Day 90</li>
+              <li>100% refund if no signed proposal or verbal commitment from a paying client by Day 90</li>
             </ul>
             <Link
               to="/cohort"

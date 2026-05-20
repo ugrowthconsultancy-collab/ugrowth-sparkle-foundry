@@ -242,7 +242,7 @@ function ApplyPage() {
           Apply for the next batch
         </h1>
         <p className="mt-3 text-sm text-muted-foreground">
-          12-week batch · ₹30,000 · Certificate in Professional, Business &amp; Management Consultancy (MEPSC) · 100% refund if no path to a paying client by
+          12-week batch · ₹30,000 · Certificate in Professional, Business &amp; Management Consultancy (MEPSC) · 100% refund if no signed proposal or verbal commitment from a paying client by
           Day 90.
         </p>
 
