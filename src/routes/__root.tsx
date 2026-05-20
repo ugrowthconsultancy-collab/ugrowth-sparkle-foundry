@@ -12,6 +12,7 @@ import {
 import appCss from "../styles.css?url";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { AuthProvider } from "@/hooks/use-auth";
 import "@/lib/i18n";
 import { useLanguage } from "@/hooks/use-language";
@@ -147,6 +148,7 @@ function RootComponent() {
             <Outlet />
           </main>
           {!isAdmin && <Footer />}
+          {!isAdmin && <WhatsAppButton variant="fab" context="global_fab" />}
         </div>
       </AuthProvider>
     </QueryClientProvider>
