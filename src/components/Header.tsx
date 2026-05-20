@@ -1,8 +1,17 @@
 import * as React from "react";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/use-auth";
+import { supabase } from "@/integrations/supabase/client";
 
 const NAV = [
   { to: "/find-a-mentor", label: "Find a Mentor" },
@@ -16,6 +25,9 @@ export function Header() {
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const [lang, setLang] = React.useState<"EN" | "HI">("EN");
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const [displayName, setDisplayName] = React.useState<string>("");
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -30,6 +42,30 @@ export function Header() {
       document.body.style.overflow = "";
     };
   }, [open]);
+
+  React.useEffect(() => {
+    if (!user) {
+      setDisplayName("");
+      return;
+    }
+    supabase
+      .from("profiles")
+      .select("preferred_name, full_name")
+      .eq("id", user.id)
+      .maybeSingle()
+      .then(({ data }) => {
+        setDisplayName(
+          data?.preferred_name || data?.full_name || user.email || "",
+        );
+      });
+  }, [user]);
+
+  async function logout() {
+    await supabase.auth.signOut();
+    navigate({ to: "/" });
+  }
+
+  const initial = (displayName || user?.email || "?").trim().charAt(0).toUpperCase();
 
   return (
     <header
@@ -58,23 +94,29 @@ export function Header() {
 
         <div className="hidden lg:flex items-center gap-3">
           <LanguageToggle lang={lang} onChange={setLang} />
-          <Button variant="ghost" size="sm" asChild>
-            <Link to="/login">Login</Link>
-          </Button>
+          {user ? (
+            <AvatarMenu initial={initial} onLogout={logout} />
+          ) : (
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/login">Login</Link>
+            </Button>
+          )}
         </div>
 
-        <button
-          type="button"
-          className="lg:hidden inline-flex items-center justify-center min-h-11 min-w-11 rounded-md text-primary"
-          aria-label="Open menu"
-          aria-expanded={open}
-          onClick={() => setOpen(true)}
-        >
-          <Menu className="h-6 w-6" />
-        </button>
+        <div className="lg:hidden flex items-center gap-2">
+          {user && <AvatarMenu initial={initial} onLogout={logout} />}
+          <button
+            type="button"
+            className="inline-flex items-center justify-center min-h-11 min-w-11 rounded-md text-primary"
+            aria-label="Open menu"
+            aria-expanded={open}
+            onClick={() => setOpen(true)}
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
       </div>
 
-      {/* Mobile drawer */}
       {open && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-foreground/30" onClick={() => setOpen(false)} />
@@ -92,7 +134,6 @@ export function Header() {
             </div>
             <nav className="flex flex-col p-4 gap-1">
               {NAV.map((item) => (
-                
                 <Link
                   key={item.to}
                   to={item.to}
@@ -105,14 +146,65 @@ export function Header() {
             </nav>
             <div className="mt-auto p-4 border-t border-border space-y-3">
               <LanguageToggle lang={lang} onChange={setLang} />
-              <Button variant="ghost" className="w-full" asChild>
-                <Link to="/login" onClick={() => setOpen(false)}>Login</Link>
-              </Button>
+              {user ? (
+                <>
+                  <Button variant="ghost" className="w-full" asChild>
+                    <Link to="/dashboard" onClick={() => setOpen(false)}>
+                      My Dashboard
+                    </Link>
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    className="w-full"
+                    onClick={() => {
+                      setOpen(false);
+                      logout();
+                    }}
+                  >
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <Button variant="ghost" className="w-full" asChild>
+                  <Link to="/login" onClick={() => setOpen(false)}>
+                    Login
+                  </Link>
+                </Button>
+              )}
             </div>
           </div>
         </div>
       )}
     </header>
+  );
+}
+
+function AvatarMenu({ initial, onLogout }: { initial: string; onLogout: () => void }) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          aria-label="Account menu"
+          className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-accent text-accent-foreground font-semibold text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+        >
+          {initial}
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-48">
+        <DropdownMenuItem asChild>
+          <Link to="/dashboard">My Dashboard</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link to="/profile">My Profile</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <Link to="/settings">Settings</Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onClick={onLogout}>Logout</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 
