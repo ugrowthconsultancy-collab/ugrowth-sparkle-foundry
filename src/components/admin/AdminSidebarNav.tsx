@@ -2,11 +2,15 @@ import * as React from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
   Users, Handshake, MessageCircle, Wrench, LineChart, Package,
-  GraduationCap, Calendar, RefreshCw, FileText, Quote, Clock, Shield,
+  GraduationCap, Calendar, RefreshCw, FileText, Quote, Clock, Shield, Settings, LayoutDashboard,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const GROUPS: Array<{ label: string; items: Array<{ to: string; label: string; Icon: React.ComponentType<{ className?: string }> }> }> = [
+  {
+    label: "Overview",
+    items: [{ to: "/admin", label: "Dashboard", Icon: LayoutDashboard }],
+  },
   {
     label: "People",
     items: [
@@ -45,6 +49,10 @@ const GROUPS: Array<{ label: string; items: Array<{ to: string; label: string; I
   {
     label: "Audit",
     items: [{ to: "/admin/admin-logs", label: "Admin Logs", Icon: Shield }],
+  },
+  {
+    label: "Config",
+    items: [{ to: "/admin/settings", label: "Settings", Icon: Settings }],
   },
 ];
 

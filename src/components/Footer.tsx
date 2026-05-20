@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin, Instagram, Youtube } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 export function Footer() {
   const { t } = useTranslation();
@@ -82,6 +83,7 @@ export function Footer() {
             {t("footer.copyright")}
           </p>
           <div className="flex items-center gap-2">
+            <WhatsAppButton variant="ghost" context="footer" />
             <a
               href="#"
               aria-label="LinkedIn"

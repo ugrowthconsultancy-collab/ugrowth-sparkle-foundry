@@ -131,7 +131,7 @@ export function ServiceIntakeModal({
           order_id_human: data.order_id_human,
         });
         navigate({
-          to: "/services/order-pending/$orderId",
+          to: "/services/order/$orderId",
           params: { orderId: data.order_id_human ?? data.id },
         });
       }

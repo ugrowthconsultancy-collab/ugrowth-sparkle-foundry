@@ -167,7 +167,7 @@ function ServiceOrdersPage() {
         footer={
           selected && (
             <div className="grid grid-cols-2 gap-2">
-              <Button size="sm" variant="ghost" onClick={() => transition(selected, "paid")}>Mark Paid</Button>
+              <Button size="sm" variant="ghost" onClick={() => transition(selected, "paid")}>✓ Verify Payment</Button>
               <Button size="sm" variant="ghost" onClick={() => transition(selected, "in_progress")}>Mark In Progress</Button>
               <Button size="sm" onClick={() => transition(selected, "completed")}>Mark Completed</Button>
               <Button size="sm" variant="destructive" onClick={() => transition(selected, "refunded")}>Refund</Button>

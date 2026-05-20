@@ -37,6 +37,7 @@ import { Route as AdminWaitlistsRouteImport } from './routes/admin.waitlists'
 import { Route as AdminToolOutputsRouteImport } from './routes/admin.tool-outputs'
 import { Route as AdminTestimonialsRouteImport } from './routes/admin.testimonials'
 import { Route as AdminSubscriptionsRouteImport } from './routes/admin.subscriptions'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminServiceOrdersRouteImport } from './routes/admin.service-orders'
 import { Route as AdminProfilesRouteImport } from './routes/admin.profiles'
 import { Route as AdminPartnersRouteImport } from './routes/admin.partners'
@@ -46,6 +47,7 @@ import { Route as AdminCohortApplicationsRouteImport } from './routes/admin.coho
 import { Route as AdminCampaignTrackingRouteImport } from './routes/admin.campaign-tracking'
 import { Route as AdminAiConversationsRouteImport } from './routes/admin.ai-conversations'
 import { Route as AdminAdminLogsRouteImport } from './routes/admin.admin-logs'
+import { Route as ServicesOrderOrderIdRouteImport } from './routes/services.order.$orderId'
 import { Route as ServicesOrderPendingOrderIdRouteImport } from './routes/services.order-pending.$orderId'
 import { Route as AdminAiConversationsIdRouteImport } from './routes/admin.ai-conversations.$id'
 
@@ -189,6 +191,11 @@ const AdminSubscriptionsRoute = AdminSubscriptionsRouteImport.update({
   path: '/subscriptions',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminServiceOrdersRoute = AdminServiceOrdersRouteImport.update({
   id: '/service-orders',
   path: '/service-orders',
@@ -234,6 +241,11 @@ const AdminAdminLogsRoute = AdminAdminLogsRouteImport.update({
   path: '/admin-logs',
   getParentRoute: () => AdminRoute,
 } as any)
+const ServicesOrderOrderIdRoute = ServicesOrderOrderIdRouteImport.update({
+  id: '/services/order/$orderId',
+  path: '/services/order/$orderId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesOrderPendingOrderIdRoute =
   ServicesOrderPendingOrderIdRouteImport.update({
     id: '/services/order-pending/$orderId',
@@ -271,6 +283,7 @@ export interface FileRoutesByFullPath {
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/profiles': typeof AdminProfilesRoute
   '/admin/service-orders': typeof AdminServiceOrdersRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/subscriptions': typeof AdminSubscriptionsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/tool-outputs': typeof AdminToolOutputsRoute
@@ -286,6 +299,7 @@ export interface FileRoutesByFullPath {
   '/services/': typeof ServicesIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
   '/services/order-pending/$orderId': typeof ServicesOrderPendingOrderIdRoute
+  '/services/order/$orderId': typeof ServicesOrderOrderIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -311,6 +325,7 @@ export interface FileRoutesByTo {
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/profiles': typeof AdminProfilesRoute
   '/admin/service-orders': typeof AdminServiceOrdersRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/subscriptions': typeof AdminSubscriptionsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/tool-outputs': typeof AdminToolOutputsRoute
@@ -326,6 +341,7 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
   '/services/order-pending/$orderId': typeof ServicesOrderPendingOrderIdRoute
+  '/services/order/$orderId': typeof ServicesOrderOrderIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -353,6 +369,7 @@ export interface FileRoutesById {
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/profiles': typeof AdminProfilesRoute
   '/admin/service-orders': typeof AdminServiceOrdersRoute
+  '/admin/settings': typeof AdminSettingsRoute
   '/admin/subscriptions': typeof AdminSubscriptionsRoute
   '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/tool-outputs': typeof AdminToolOutputsRoute
@@ -368,6 +385,7 @@ export interface FileRoutesById {
   '/services/': typeof ServicesIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
   '/services/order-pending/$orderId': typeof ServicesOrderPendingOrderIdRoute
+  '/services/order/$orderId': typeof ServicesOrderOrderIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -396,6 +414,7 @@ export interface FileRouteTypes {
     | '/admin/partners'
     | '/admin/profiles'
     | '/admin/service-orders'
+    | '/admin/settings'
     | '/admin/subscriptions'
     | '/admin/testimonials'
     | '/admin/tool-outputs'
@@ -411,6 +430,7 @@ export interface FileRouteTypes {
     | '/services/'
     | '/admin/ai-conversations/$id'
     | '/services/order-pending/$orderId'
+    | '/services/order/$orderId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -436,6 +456,7 @@ export interface FileRouteTypes {
     | '/admin/partners'
     | '/admin/profiles'
     | '/admin/service-orders'
+    | '/admin/settings'
     | '/admin/subscriptions'
     | '/admin/testimonials'
     | '/admin/tool-outputs'
@@ -451,6 +472,7 @@ export interface FileRouteTypes {
     | '/services'
     | '/admin/ai-conversations/$id'
     | '/services/order-pending/$orderId'
+    | '/services/order/$orderId'
   id:
     | '__root__'
     | '/'
@@ -477,6 +499,7 @@ export interface FileRouteTypes {
     | '/admin/partners'
     | '/admin/profiles'
     | '/admin/service-orders'
+    | '/admin/settings'
     | '/admin/subscriptions'
     | '/admin/testimonials'
     | '/admin/tool-outputs'
@@ -492,6 +515,7 @@ export interface FileRouteTypes {
     | '/services/'
     | '/admin/ai-conversations/$id'
     | '/services/order-pending/$orderId'
+    | '/services/order/$orderId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -519,6 +543,7 @@ export interface RootRouteChildren {
   TracksSlugRoute: typeof TracksSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
   ServicesOrderPendingOrderIdRoute: typeof ServicesOrderPendingOrderIdRoute
+  ServicesOrderOrderIdRoute: typeof ServicesOrderOrderIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -719,6 +744,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminSubscriptionsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/service-orders': {
       id: '/admin/service-orders'
       path: '/service-orders'
@@ -782,6 +814,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminLogsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/services/order/$orderId': {
+      id: '/services/order/$orderId'
+      path: '/services/order/$orderId'
+      fullPath: '/services/order/$orderId'
+      preLoaderRoute: typeof ServicesOrderOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/order-pending/$orderId': {
       id: '/services/order-pending/$orderId'
       path: '/services/order-pending/$orderId'
@@ -820,6 +859,7 @@ interface AdminRouteChildren {
   AdminPartnersRoute: typeof AdminPartnersRoute
   AdminProfilesRoute: typeof AdminProfilesRoute
   AdminServiceOrdersRoute: typeof AdminServiceOrdersRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
   AdminSubscriptionsRoute: typeof AdminSubscriptionsRoute
   AdminTestimonialsRoute: typeof AdminTestimonialsRoute
   AdminToolOutputsRoute: typeof AdminToolOutputsRoute
@@ -837,6 +877,7 @@ const AdminRouteChildren: AdminRouteChildren = {
   AdminPartnersRoute: AdminPartnersRoute,
   AdminProfilesRoute: AdminProfilesRoute,
   AdminServiceOrdersRoute: AdminServiceOrdersRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
   AdminSubscriptionsRoute: AdminSubscriptionsRoute,
   AdminTestimonialsRoute: AdminTestimonialsRoute,
   AdminToolOutputsRoute: AdminToolOutputsRoute,
@@ -871,6 +912,7 @@ const rootRouteChildren: RootRouteChildren = {
   TracksSlugRoute: TracksSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
   ServicesOrderPendingOrderIdRoute: ServicesOrderPendingOrderIdRoute,
+  ServicesOrderOrderIdRoute: ServicesOrderOrderIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
