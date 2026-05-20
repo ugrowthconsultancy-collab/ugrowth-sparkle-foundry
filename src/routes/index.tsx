@@ -477,7 +477,7 @@ function CohortBlock() {
           .from("cohort_applications")
           .select("id", { count: "exact", head: true })
           .eq("cohort_id", data.id)
-          .in("screening_status", ["accepted", "enrolled"]);
+          .in("screening_status", ["accepted"]);
         setCohort({
           name: data.name,
           max_seats: data.max_seats,
