@@ -17,9 +17,16 @@ import { Route as PreviewComponentsRouteImport } from './routes/preview-componen
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CirclesRouteImport } from './routes/circles'
+import { Route as ApplyRouteImport } from './routes/apply'
+import { Route as AiAdvisorRouteImport } from './routes/ai-advisor'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as TracksSlugRouteImport } from './routes/tracks.$slug'
+import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
+import { Route as StoriesSlugRouteImport } from './routes/stories.$slug'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
 import { Route as AdminWaitlistsRouteImport } from './routes/admin.waitlists'
 import { Route as AdminToolOutputsRouteImport } from './routes/admin.tool-outputs'
@@ -76,6 +83,21 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CirclesRoute = CirclesRouteImport.update({
+  id: '/circles',
+  path: '/circles',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApplyRoute = ApplyRouteImport.update({
+  id: '/apply',
+  path: '/apply',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiAdvisorRoute = AiAdvisorRouteImport.update({
+  id: '/ai-advisor',
+  path: '/ai-advisor',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -90,6 +112,26 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
+} as any)
+const TracksSlugRoute = TracksSlugRouteImport.update({
+  id: '/tracks/$slug',
+  path: '/tracks/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsSlugRoute = ToolsSlugRouteImport.update({
+  id: '/tools/$slug',
+  path: '/tools/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoriesSlugRoute = StoriesSlugRouteImport.update({
+  id: '/stories/$slug',
+  path: '/stories/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services/$slug',
+  path: '/services/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthCallbackRoute = AuthCallbackRouteImport.update({
   id: '/auth/callback',
@@ -170,6 +212,9 @@ const AdminAiConversationsIdRoute = AdminAiConversationsIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/ai-advisor': typeof AiAdvisorRoute
+  '/apply': typeof ApplyRoute
+  '/circles': typeof CirclesRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
@@ -192,11 +237,18 @@ export interface FileRoutesByFullPath {
   '/admin/tool-outputs': typeof AdminToolOutputsRoute
   '/admin/waitlists': typeof AdminWaitlistsRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/stories/$slug': typeof StoriesSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
+  '/tracks/$slug': typeof TracksSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-advisor': typeof AiAdvisorRoute
+  '/apply': typeof ApplyRoute
+  '/circles': typeof CirclesRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
@@ -219,6 +271,10 @@ export interface FileRoutesByTo {
   '/admin/tool-outputs': typeof AdminToolOutputsRoute
   '/admin/waitlists': typeof AdminWaitlistsRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/stories/$slug': typeof StoriesSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
+  '/tracks/$slug': typeof TracksSlugRoute
   '/admin': typeof AdminIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
 }
@@ -226,6 +282,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRouteWithChildren
+  '/ai-advisor': typeof AiAdvisorRoute
+  '/apply': typeof ApplyRoute
+  '/circles': typeof CirclesRoute
   '/dashboard': typeof DashboardRoute
   '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
@@ -248,6 +307,10 @@ export interface FileRoutesById {
   '/admin/tool-outputs': typeof AdminToolOutputsRoute
   '/admin/waitlists': typeof AdminWaitlistsRoute
   '/auth/callback': typeof AuthCallbackRoute
+  '/services/$slug': typeof ServicesSlugRoute
+  '/stories/$slug': typeof StoriesSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
+  '/tracks/$slug': typeof TracksSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
 }
@@ -256,6 +319,9 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/admin'
+    | '/ai-advisor'
+    | '/apply'
+    | '/circles'
     | '/dashboard'
     | '/login'
     | '/onboarding'
@@ -278,11 +344,18 @@ export interface FileRouteTypes {
     | '/admin/tool-outputs'
     | '/admin/waitlists'
     | '/auth/callback'
+    | '/services/$slug'
+    | '/stories/$slug'
+    | '/tools/$slug'
+    | '/tracks/$slug'
     | '/admin/'
     | '/admin/ai-conversations/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/ai-advisor'
+    | '/apply'
+    | '/circles'
     | '/dashboard'
     | '/login'
     | '/onboarding'
@@ -305,12 +378,19 @@ export interface FileRouteTypes {
     | '/admin/tool-outputs'
     | '/admin/waitlists'
     | '/auth/callback'
+    | '/services/$slug'
+    | '/stories/$slug'
+    | '/tools/$slug'
+    | '/tracks/$slug'
     | '/admin'
     | '/admin/ai-conversations/$id'
   id:
     | '__root__'
     | '/'
     | '/admin'
+    | '/ai-advisor'
+    | '/apply'
+    | '/circles'
     | '/dashboard'
     | '/login'
     | '/onboarding'
@@ -333,6 +413,10 @@ export interface FileRouteTypes {
     | '/admin/tool-outputs'
     | '/admin/waitlists'
     | '/auth/callback'
+    | '/services/$slug'
+    | '/stories/$slug'
+    | '/tools/$slug'
+    | '/tracks/$slug'
     | '/admin/'
     | '/admin/ai-conversations/$id'
   fileRoutesById: FileRoutesById
@@ -340,6 +424,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRouteWithChildren
+  AiAdvisorRoute: typeof AiAdvisorRoute
+  ApplyRoute: typeof ApplyRoute
+  CirclesRoute: typeof CirclesRoute
   DashboardRoute: typeof DashboardRoute
   LoginRoute: typeof LoginRoute
   OnboardingRoute: typeof OnboardingRoute
@@ -349,6 +436,10 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   TermsRoute: typeof TermsRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
+  ServicesSlugRoute: typeof ServicesSlugRoute
+  StoriesSlugRoute: typeof StoriesSlugRoute
+  ToolsSlugRoute: typeof ToolsSlugRoute
+  TracksSlugRoute: typeof TracksSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -409,6 +500,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/circles': {
+      id: '/circles'
+      path: '/circles'
+      fullPath: '/circles'
+      preLoaderRoute: typeof CirclesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/apply': {
+      id: '/apply'
+      path: '/apply'
+      fullPath: '/apply'
+      preLoaderRoute: typeof ApplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-advisor': {
+      id: '/ai-advisor'
+      path: '/ai-advisor'
+      fullPath: '/ai-advisor'
+      preLoaderRoute: typeof AiAdvisorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -429,6 +541,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/tracks/$slug': {
+      id: '/tracks/$slug'
+      path: '/tracks/$slug'
+      fullPath: '/tracks/$slug'
+      preLoaderRoute: typeof TracksSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/$slug': {
+      id: '/tools/$slug'
+      path: '/tools/$slug'
+      fullPath: '/tools/$slug'
+      preLoaderRoute: typeof ToolsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stories/$slug': {
+      id: '/stories/$slug'
+      path: '/stories/$slug'
+      fullPath: '/stories/$slug'
+      preLoaderRoute: typeof StoriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/auth/callback': {
       id: '/auth/callback'
@@ -588,6 +728,9 @@ const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRouteWithChildren,
+  AiAdvisorRoute: AiAdvisorRoute,
+  ApplyRoute: ApplyRoute,
+  CirclesRoute: CirclesRoute,
   DashboardRoute: DashboardRoute,
   LoginRoute: LoginRoute,
   OnboardingRoute: OnboardingRoute,
@@ -597,6 +740,10 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   TermsRoute: TermsRoute,
   AuthCallbackRoute: AuthCallbackRoute,
+  ServicesSlugRoute: ServicesSlugRoute,
+  StoriesSlugRoute: StoriesSlugRoute,
+  ToolsSlugRoute: ToolsSlugRoute,
+  TracksSlugRoute: TracksSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
