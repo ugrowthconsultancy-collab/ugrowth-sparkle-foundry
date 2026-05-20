@@ -1,5 +1,6 @@
 import * as React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import {
   Target,
   IndianRupee,
@@ -206,15 +207,14 @@ function HeroIllustration() {
 
 function BrochureModal({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false);
+  const { t } = useTranslation();
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Get the free playbook</DialogTitle>
-          <DialogDescription>
-            We'll send the full playbook PDF to your email. Available soon.
-          </DialogDescription>
+          <DialogTitle>{t("brochure.title")}</DialogTitle>
+          <DialogDescription>{t("brochure.desc")}</DialogDescription>
         </DialogHeader>
         <div className="space-y-3 pt-2">
           <Input type="email" placeholder="you@example.com" disabled />
@@ -223,11 +223,9 @@ function BrochureModal({ children }: { children: React.ReactNode }) {
             disabled
             onClick={() => ctaClick("brochure_submit", "/brochure")}
           >
-            Email it to me
+            {t("brochure.submit")}
           </Button>
-          <p className="text-xs text-muted-foreground">
-            Brochure delivery activates in the next release.
-          </p>
+          <p className="text-xs text-muted-foreground">{t("brochure.note")}</p>
         </div>
       </DialogContent>
     </Dialog>
@@ -238,6 +236,7 @@ function Hero() {
   React.useEffect(() => {
     track("homepage_view", {});
   }, []);
+  const { t } = useTranslation();
   const ref = useSectionView("hero");
   return (
     <section
@@ -248,10 +247,10 @@ function Hero() {
       <div className="mx-auto max-w-[1280px] px-4 lg:px-6 py-12 lg:py-24 grid lg:grid-cols-2 gap-10 items-center">
         <div className="order-2 lg:order-1">
           <h1 className="font-display font-semibold text-4xl md:text-5xl lg:text-6xl text-primary leading-[1.1]">
-            Free help to start your own practice in India.
+            {t("hero.title")}
           </h1>
           <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-xl">
-            Real methodology. Real tools. Real mentors. No catch.
+            {t("hero.subtitle")}
           </p>
           <div className="mt-7 flex flex-col sm:flex-row gap-3">
             <Button size="lg" asChild>
@@ -259,7 +258,7 @@ function Hero() {
                 to="/ai-advisor"
                 onClick={() => ctaClick("hero_primary_ai_advisor", "/ai-advisor")}
               >
-                Try the free AI Advisor
+                {t("hero.ctaPrimary")}
               </Link>
             </Button>
             <BrochureModal>
@@ -268,14 +267,14 @@ function Hero() {
                 variant="ghost"
                 onClick={() => ctaClick("hero_secondary_brochure", "modal:brochure")}
               >
-                Get the free playbook
+                {t("hero.ctaSecondary")}
               </Button>
             </BrochureModal>
           </div>
           <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
-            <li>Methodology certified by MEPSC, Government of India</li>
-            <li>University of Mumbai Board of Studies affiliated</li>
-            <li>UGrowth Consultancy Pvt Ltd</li>
+            <li>{t("hero.badge1")}</li>
+            <li>{t("hero.badge2")}</li>
+            <li>{t("hero.badge3")}</li>
           </ul>
         </div>
         <div className="order-1 lg:order-2">
