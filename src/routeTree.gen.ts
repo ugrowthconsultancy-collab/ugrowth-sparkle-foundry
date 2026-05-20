@@ -46,6 +46,7 @@ import { Route as AdminCohortApplicationsRouteImport } from './routes/admin.coho
 import { Route as AdminCampaignTrackingRouteImport } from './routes/admin.campaign-tracking'
 import { Route as AdminAiConversationsRouteImport } from './routes/admin.ai-conversations'
 import { Route as AdminAdminLogsRouteImport } from './routes/admin.admin-logs'
+import { Route as ServicesOrderPendingOrderIdRouteImport } from './routes/services.order-pending.$orderId'
 import { Route as AdminAiConversationsIdRouteImport } from './routes/admin.ai-conversations.$id'
 
 const WorkshopsRoute = WorkshopsRouteImport.update({
@@ -233,6 +234,12 @@ const AdminAdminLogsRoute = AdminAdminLogsRouteImport.update({
   path: '/admin-logs',
   getParentRoute: () => AdminRoute,
 } as any)
+const ServicesOrderPendingOrderIdRoute =
+  ServicesOrderPendingOrderIdRouteImport.update({
+    id: '/services/order-pending/$orderId',
+    path: '/services/order-pending/$orderId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AdminAiConversationsIdRoute = AdminAiConversationsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -278,6 +285,7 @@ export interface FileRoutesByFullPath {
   '/admin/': typeof AdminIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
+  '/services/order-pending/$orderId': typeof ServicesOrderPendingOrderIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -317,6 +325,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminIndexRoute
   '/services': typeof ServicesIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
+  '/services/order-pending/$orderId': typeof ServicesOrderPendingOrderIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -358,6 +367,7 @@ export interface FileRoutesById {
   '/admin/': typeof AdminIndexRoute
   '/services/': typeof ServicesIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
+  '/services/order-pending/$orderId': typeof ServicesOrderPendingOrderIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -400,6 +410,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/services/'
     | '/admin/ai-conversations/$id'
+    | '/services/order-pending/$orderId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -439,6 +450,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/services'
     | '/admin/ai-conversations/$id'
+    | '/services/order-pending/$orderId'
   id:
     | '__root__'
     | '/'
@@ -479,6 +491,7 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/services/'
     | '/admin/ai-conversations/$id'
+    | '/services/order-pending/$orderId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -505,6 +518,7 @@ export interface RootRouteChildren {
   ToolsRateCardBuilderRoute: typeof ToolsRateCardBuilderRoute
   TracksSlugRoute: typeof TracksSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
+  ServicesOrderPendingOrderIdRoute: typeof ServicesOrderPendingOrderIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -768,6 +782,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminLogsRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/services/order-pending/$orderId': {
+      id: '/services/order-pending/$orderId'
+      path: '/services/order-pending/$orderId'
+      fullPath: '/services/order-pending/$orderId'
+      preLoaderRoute: typeof ServicesOrderPendingOrderIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/ai-conversations/$id': {
       id: '/admin/ai-conversations/$id'
       path: '/$id'
@@ -849,6 +870,7 @@ const rootRouteChildren: RootRouteChildren = {
   ToolsRateCardBuilderRoute: ToolsRateCardBuilderRoute,
   TracksSlugRoute: TracksSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,
+  ServicesOrderPendingOrderIdRoute: ServicesOrderPendingOrderIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
