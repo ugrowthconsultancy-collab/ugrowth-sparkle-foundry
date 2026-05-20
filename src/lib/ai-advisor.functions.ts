@@ -2,23 +2,55 @@ import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
 import { supabaseAdmin } from "@/integrations/supabase/client.server";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
+import { callGemini, pickModel, UGROWTH_SYSTEM_PROMPT, type GeminiMessage } from "@/lib/gemini";
 
 const ANON_LIMIT = 5;
 const DAILY_LIMIT = 30;
 
-const STUB_REPLY_EN =
-  "Thanks for your question. The AI Advisor is being trained on Captain's methodology (Brochures A + B) and will go live shortly. In the meantime, your message has been saved — Captain or our team will respond personally within 24 hours. While you wait, try our free tools (Niche Generator, Rate Card Builder) or browse the resources library.";
-const STUB_REPLY_HI =
-  "आपके सवाल के लिए धन्यवाद। AI Advisor अभी Captain की methodology पर train हो रहा है और जल्द live होगा। तब तक आपका message save हो गया है — Captain या हमारी team 24 घंटों में आपको personally जवाब देगी। इस बीच हमारे free tools (Niche Generator, Rate Card Builder) try करें या resources library देखें।";
-
-function reply(lang: "en" | "hi") {
-  return lang === "hi" ? STUB_REPLY_HI : STUB_REPLY_EN;
-}
+const FALLBACK_REPLY_EN =
+  "Sorry — I'm having trouble reaching the AI right now. Please try again shortly, or WhatsApp our team for an immediate response.";
+const FALLBACK_REPLY_HI =
+  "क्षमा करें — अभी AI से जुड़ने में दिक्कत आ रही है। कृपया कुछ देर में दोबारा कोशिश करें, या तुरंत जवाब के लिए हमारी team को WhatsApp करें।";
 
 function titleFromContent(s: string) {
   const t = s.trim().replace(/\s+/g, " ");
   if (!t) return "Untitled conversation";
   return t.length > 40 ? t.slice(0, 40) + "…" : t;
+}
+
+async function generateAssistantReply(opts: {
+  conversationId: string;
+  userContent: string;
+  language: "en" | "hi";
+}): Promise<string> {
+  // Fetch prior messages BEFORE the new user message is inserted
+  const { data: prior } = await supabaseAdmin
+    .from("ai_messages")
+    .select("role, content, created_at")
+    .eq("conversation_id", opts.conversationId)
+    .order("created_at", { ascending: true })
+    .limit(20);
+  const history: GeminiMessage[] = (prior ?? [])
+    .filter((m) => m.role === "user" || m.role === "assistant")
+    .map((m) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      content: m.content,
+    }));
+  history.push({ role: "user", content: opts.userContent });
+  const langHint =
+    opts.language === "hi"
+      ? "\n\nIMPORTANT: Reply in Hindi/Hinglish (Devanagari + Roman mix is fine)."
+      : "\n\nIMPORTANT: Reply in English (mix Hinglish only if the user does).";
+  try {
+    return await callGemini({
+      model: pickModel(opts.userContent),
+      history,
+      systemPrompt: UGROWTH_SYSTEM_PROMPT + langHint,
+    });
+  } catch (err) {
+    console.error("[ai-advisor] Gemini call failed:", err);
+    return opts.language === "hi" ? FALLBACK_REPLY_HI : FALLBACK_REPLY_EN;
+  }
 }
 
 async function appendPair(opts: {
@@ -27,7 +59,13 @@ async function appendPair(opts: {
   language: "en" | "hi";
 }) {
   const { conversationId, userContent, language } = opts;
-  const assistantContent = reply(language);
+  // 1) Generate assistant reply BEFORE inserting user msg so history is clean
+  const assistantContent = await generateAssistantReply({
+    conversationId,
+    userContent,
+    language,
+  });
+  // 2) Insert user message
   const { data: userMsg, error: e1 } = await supabaseAdmin
     .from("ai_messages")
     .insert({
@@ -38,6 +76,7 @@ async function appendPair(opts: {
     .select("*")
     .single();
   if (e1) throw new Error(e1.message);
+  // 3) Insert assistant message
   const { data: assistantMsg, error: e2 } = await supabaseAdmin
     .from("ai_messages")
     .insert({
