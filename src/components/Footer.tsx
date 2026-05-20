@@ -42,8 +42,7 @@ export function Footer() {
               UGrowth Consultancy
             </div>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Free help to start your own practice in India. Real methodology, real
-              tools, real outcomes. No catch.
+              {t("footer.tagline")}
             </p>
             <p className="mt-4 text-xs text-muted-foreground">UGrowth Consultancy Pvt Ltd</p>
           </div>
@@ -71,16 +70,16 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-border grid gap-4 md:grid-cols-2">
           <div className="text-xs text-muted-foreground leading-relaxed">
-            Methodology certified by MEPSC, Ministry of Skill Development &amp; Entrepreneurship.
+            {t("footer.cert")}
           </div>
           <div className="text-xs text-muted-foreground leading-relaxed md:text-right">
-            University of Mumbai Board of Studies affiliated.
+            {t("footer.affil")}
           </div>
         </div>
 
         <div className="mt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            © 2026 UGrowth Consultancy Pvt Ltd. Made with care for Indian small business owners.
+            {t("footer.copyright")}
           </p>
           <div className="flex items-center gap-2">
             <a
