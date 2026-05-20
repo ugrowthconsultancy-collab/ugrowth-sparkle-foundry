@@ -50,6 +50,132 @@ export type Database = {
         }
         Relationships: []
       }
+      ai_conversations: {
+        Row: {
+          archetype_detected: string | null
+          created_at: string
+          id: string
+          is_archived: boolean
+          last_message_at: string
+          message_count: number
+          profile_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          archetype_detected?: string | null
+          created_at?: string
+          id?: string
+          is_archived?: boolean
+          last_message_at?: string
+          message_count?: number
+          profile_id: string
+          title?: string
+          updated_at?: string
+        }
+        Update: {
+          archetype_detected?: string | null
+          created_at?: string
+          id?: string
+          is_archived?: boolean
+          last_message_at?: string
+          message_count?: number
+          profile_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_conversations_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_messages: {
+        Row: {
+          content: string
+          conversation_id: string
+          created_at: string
+          id: string
+          model_used: Database["public"]["Enums"]["ai_model_used"] | null
+          role: Database["public"]["Enums"]["ai_message_role"]
+          token_count: number | null
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          conversation_id: string
+          created_at?: string
+          id?: string
+          model_used?: Database["public"]["Enums"]["ai_model_used"] | null
+          role: Database["public"]["Enums"]["ai_message_role"]
+          token_count?: number | null
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          model_used?: Database["public"]["Enums"]["ai_model_used"] | null
+          role?: Database["public"]["Enums"]["ai_message_role"]
+          token_count?: number | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "ai_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_usage_daily: {
+        Row: {
+          created_at: string
+          id: string
+          messages_count: number
+          profile_id: string
+          tier: Database["public"]["Enums"]["ai_tier"]
+          tokens_used: number
+          updated_at: string
+          usage_date: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          messages_count?: number
+          profile_id: string
+          tier?: Database["public"]["Enums"]["ai_tier"]
+          tokens_used?: number
+          updated_at?: string
+          usage_date: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          messages_count?: number
+          profile_id?: string
+          tier?: Database["public"]["Enums"]["ai_tier"]
+          tokens_used?: number
+          updated_at?: string
+          usage_date?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_usage_daily_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       archetypes: {
         Row: {
           code: string
@@ -139,6 +265,138 @@ export type Database = {
           },
         ]
       }
+      cohort_applications: {
+        Row: {
+          ai_pre_screen_notes: string | null
+          ai_pre_screen_score: number | null
+          application_data: Json
+          captain_notes: string | null
+          cohort_id: string
+          created_at: string
+          enrolled_at: string | null
+          id: string
+          payment_link: string | null
+          payment_status: Database["public"]["Enums"]["cohort_payment_status"]
+          profile_id: string
+          screening_status: Database["public"]["Enums"]["cohort_screening_status"]
+          updated_at: string
+        }
+        Insert: {
+          ai_pre_screen_notes?: string | null
+          ai_pre_screen_score?: number | null
+          application_data: Json
+          captain_notes?: string | null
+          cohort_id: string
+          created_at?: string
+          enrolled_at?: string | null
+          id?: string
+          payment_link?: string | null
+          payment_status?: Database["public"]["Enums"]["cohort_payment_status"]
+          profile_id: string
+          screening_status?: Database["public"]["Enums"]["cohort_screening_status"]
+          updated_at?: string
+        }
+        Update: {
+          ai_pre_screen_notes?: string | null
+          ai_pre_screen_score?: number | null
+          application_data?: Json
+          captain_notes?: string | null
+          cohort_id?: string
+          created_at?: string
+          enrolled_at?: string | null
+          id?: string
+          payment_link?: string | null
+          payment_status?: Database["public"]["Enums"]["cohort_payment_status"]
+          profile_id?: string
+          screening_status?: Database["public"]["Enums"]["cohort_screening_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cohort_applications_cohort_id_fkey"
+            columns: ["cohort_id"]
+            isOneToOne: false
+            referencedRelation: "cohorts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cohort_applications_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cohorts: {
+        Row: {
+          application_deadline: string
+          captain_led: boolean
+          created_at: string
+          curriculum_url: string | null
+          description: string | null
+          end_date: string
+          id: string
+          instructor_partner_id: string | null
+          is_open: boolean
+          max_seats: number
+          name: string
+          price_inr_paise: number
+          product_type: Database["public"]["Enums"]["cohort_product_type"]
+          start_date: string
+          updated_at: string
+        }
+        Insert: {
+          application_deadline: string
+          captain_led?: boolean
+          created_at?: string
+          curriculum_url?: string | null
+          description?: string | null
+          end_date: string
+          id?: string
+          instructor_partner_id?: string | null
+          is_open?: boolean
+          max_seats?: number
+          name: string
+          price_inr_paise: number
+          product_type: Database["public"]["Enums"]["cohort_product_type"]
+          start_date: string
+          updated_at?: string
+        }
+        Update: {
+          application_deadline?: string
+          captain_led?: boolean
+          created_at?: string
+          curriculum_url?: string | null
+          description?: string | null
+          end_date?: string
+          id?: string
+          instructor_partner_id?: string | null
+          is_open?: boolean
+          max_seats?: number
+          name?: string
+          price_inr_paise?: number
+          product_type?: Database["public"]["Enums"]["cohort_product_type"]
+          start_date?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cohorts_instructor_partner_id_fkey"
+            columns: ["instructor_partner_id"]
+            isOneToOne: false
+            referencedRelation: "partners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "cohorts_instructor_partner_id_fkey"
+            columns: ["instructor_partner_id"]
+            isOneToOne: false
+            referencedRelation: "partners_public"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       content_resources: {
         Row: {
           audience_tags: string[]
@@ -199,6 +457,66 @@ export type Database = {
           title?: string
           topic_tags?: string[]
           updated_at?: string
+        }
+        Relationships: []
+      }
+      partners: {
+        Row: {
+          agreement_signed_date: string | null
+          bank_account_for_payouts: Json
+          city: string
+          commission_split_pct: number
+          created_at: string
+          email: string
+          id: string
+          internal_notes: string | null
+          is_active: boolean
+          name: string
+          partner_type: Database["public"]["Enums"]["partner_type"]
+          phone_e164: string | null
+          service_capacity: Json
+          specialisations: string[]
+          state: string | null
+          updated_at: string
+          whatsapp_number: string | null
+        }
+        Insert: {
+          agreement_signed_date?: string | null
+          bank_account_for_payouts?: Json
+          city: string
+          commission_split_pct?: number
+          created_at?: string
+          email: string
+          id?: string
+          internal_notes?: string | null
+          is_active?: boolean
+          name: string
+          partner_type: Database["public"]["Enums"]["partner_type"]
+          phone_e164?: string | null
+          service_capacity?: Json
+          specialisations?: string[]
+          state?: string | null
+          updated_at?: string
+          whatsapp_number?: string | null
+        }
+        Update: {
+          agreement_signed_date?: string | null
+          bank_account_for_payouts?: Json
+          city?: string
+          commission_split_pct?: number
+          created_at?: string
+          email?: string
+          id?: string
+          internal_notes?: string | null
+          is_active?: boolean
+          name?: string
+          partner_type?: Database["public"]["Enums"]["partner_type"]
+          phone_e164?: string | null
+          service_capacity?: Json
+          specialisations?: string[]
+          state?: string | null
+          updated_at?: string
+          whatsapp_number?: string | null
         }
         Relationships: []
       }
@@ -291,6 +609,135 @@ export type Database = {
           utm_source?: string | null
         }
         Relationships: []
+      }
+      service_orders: {
+        Row: {
+          amount_inr_paise: number
+          completed_at: string | null
+          created_at: string
+          customer_documents: Json
+          id: string
+          intake_data: Json
+          notes: string | null
+          order_id_human: string | null
+          partner_ca_id: string | null
+          profile_id: string
+          razorpay_order_id: string | null
+          razorpay_payment_id: string | null
+          service_type: Database["public"]["Enums"]["service_type"]
+          status: Database["public"]["Enums"]["service_order_status"]
+          updated_at: string
+        }
+        Insert: {
+          amount_inr_paise: number
+          completed_at?: string | null
+          created_at?: string
+          customer_documents?: Json
+          id?: string
+          intake_data?: Json
+          notes?: string | null
+          order_id_human?: string | null
+          partner_ca_id?: string | null
+          profile_id: string
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          service_type: Database["public"]["Enums"]["service_type"]
+          status?: Database["public"]["Enums"]["service_order_status"]
+          updated_at?: string
+        }
+        Update: {
+          amount_inr_paise?: number
+          completed_at?: string | null
+          created_at?: string
+          customer_documents?: Json
+          id?: string
+          intake_data?: Json
+          notes?: string | null
+          order_id_human?: string | null
+          partner_ca_id?: string | null
+          profile_id?: string
+          razorpay_order_id?: string | null
+          razorpay_payment_id?: string | null
+          service_type?: Database["public"]["Enums"]["service_type"]
+          status?: Database["public"]["Enums"]["service_order_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_orders_partner_ca_id_fkey"
+            columns: ["partner_ca_id"]
+            isOneToOne: false
+            referencedRelation: "partners"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "service_orders_partner_ca_id_fkey"
+            columns: ["partner_ca_id"]
+            isOneToOne: false
+            referencedRelation: "partners_public"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "service_orders_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      subscriptions: {
+        Row: {
+          amount_inr_paise: number
+          billing_cycle: Database["public"]["Enums"]["subscription_billing_cycle"]
+          cancelled_at: string | null
+          created_at: string
+          id: string
+          next_billing_date: string | null
+          product: Database["public"]["Enums"]["subscription_product"]
+          profile_id: string
+          razorpay_subscription_id: string | null
+          started_at: string
+          status: Database["public"]["Enums"]["subscription_status"]
+          updated_at: string
+        }
+        Insert: {
+          amount_inr_paise: number
+          billing_cycle: Database["public"]["Enums"]["subscription_billing_cycle"]
+          cancelled_at?: string | null
+          created_at?: string
+          id?: string
+          next_billing_date?: string | null
+          product: Database["public"]["Enums"]["subscription_product"]
+          profile_id: string
+          razorpay_subscription_id?: string | null
+          started_at?: string
+          status?: Database["public"]["Enums"]["subscription_status"]
+          updated_at?: string
+        }
+        Update: {
+          amount_inr_paise?: number
+          billing_cycle?: Database["public"]["Enums"]["subscription_billing_cycle"]
+          cancelled_at?: string | null
+          created_at?: string
+          id?: string
+          next_billing_date?: string | null
+          product?: Database["public"]["Enums"]["subscription_product"]
+          profile_id?: string
+          razorpay_subscription_id?: string | null
+          started_at?: string
+          status?: Database["public"]["Enums"]["subscription_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "subscriptions_profile_id_fkey"
+            columns: ["profile_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       testimonials: {
         Row: {
@@ -444,13 +891,61 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      partners_public: {
+        Row: {
+          city: string | null
+          id: string | null
+          is_active: boolean | null
+          name: string | null
+          partner_type: Database["public"]["Enums"]["partner_type"] | null
+          specialisations: string[] | null
+          state: string | null
+        }
+        Insert: {
+          city?: string | null
+          id?: string | null
+          is_active?: boolean | null
+          name?: string | null
+          partner_type?: Database["public"]["Enums"]["partner_type"] | null
+          specialisations?: string[] | null
+          state?: string | null
+        }
+        Update: {
+          city?: string | null
+          id?: string | null
+          is_active?: boolean | null
+          name?: string | null
+          partner_type?: Database["public"]["Enums"]["partner_type"] | null
+          specialisations?: string[] | null
+          state?: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
+      calculate_ai_usage_today: {
+        Args: { p_profile_id: string }
+        Returns: number
+      }
       is_admin: { Args: { _user_id: string }; Returns: boolean }
     }
     Enums: {
+      ai_message_role: "user" | "assistant"
+      ai_model_used: "haiku" | "sonnet"
+      ai_tier: "free" | "pro"
       business_stage: "plan_start" | "manage_grow" | "scale_exit" | "all"
+      cohort_payment_status: "not_sent" | "sent" | "paid" | "expired"
+      cohort_product_type:
+        | "mepsc_certification"
+        | "return_to_work"
+        | "pricing_workshop"
+        | "mastermind"
+      cohort_screening_status:
+        | "pending"
+        | "shortlisted"
+        | "accepted"
+        | "rejected"
+        | "waitlisted"
       content_type:
         | "article"
         | "framework_pdf"
@@ -459,7 +954,42 @@ export type Database = {
         | "video"
         | "podcast"
       language_code: "en" | "hi"
+      partner_type:
+        | "ca"
+        | "advocate"
+        | "mentor"
+        | "workshop_speaker"
+        | "cohort_lead"
       revenue_range: "0" | "0-25k" | "25k-1L" | "1L-5L" | "5L-25L" | "25L+"
+      service_order_status:
+        | "created"
+        | "paid"
+        | "in_progress"
+        | "completed"
+        | "cancelled"
+        | "refunded"
+      service_type:
+        | "gst_registration"
+        | "udyam"
+        | "pvt_ltd_incorporation"
+        | "llp_incorporation"
+        | "roc_annual_filing"
+        | "epf_setup"
+        | "trademark_filing"
+        | "fssai"
+        | "compliance_subscription"
+      subscription_billing_cycle: "monthly" | "annual"
+      subscription_product:
+        | "ai_pro"
+        | "alumni_community"
+        | "compliance"
+        | "circle_membership"
+      subscription_status:
+        | "active"
+        | "paused"
+        | "cancelled"
+        | "past_due"
+        | "trialing"
       tool_name:
         | "niche_generator"
         | "rate_card_builder"
@@ -603,7 +1133,24 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      ai_message_role: ["user", "assistant"],
+      ai_model_used: ["haiku", "sonnet"],
+      ai_tier: ["free", "pro"],
       business_stage: ["plan_start", "manage_grow", "scale_exit", "all"],
+      cohort_payment_status: ["not_sent", "sent", "paid", "expired"],
+      cohort_product_type: [
+        "mepsc_certification",
+        "return_to_work",
+        "pricing_workshop",
+        "mastermind",
+      ],
+      cohort_screening_status: [
+        "pending",
+        "shortlisted",
+        "accepted",
+        "rejected",
+        "waitlisted",
+      ],
       content_type: [
         "article",
         "framework_pdf",
@@ -613,7 +1160,47 @@ export const Constants = {
         "podcast",
       ],
       language_code: ["en", "hi"],
+      partner_type: [
+        "ca",
+        "advocate",
+        "mentor",
+        "workshop_speaker",
+        "cohort_lead",
+      ],
       revenue_range: ["0", "0-25k", "25k-1L", "1L-5L", "5L-25L", "25L+"],
+      service_order_status: [
+        "created",
+        "paid",
+        "in_progress",
+        "completed",
+        "cancelled",
+        "refunded",
+      ],
+      service_type: [
+        "gst_registration",
+        "udyam",
+        "pvt_ltd_incorporation",
+        "llp_incorporation",
+        "roc_annual_filing",
+        "epf_setup",
+        "trademark_filing",
+        "fssai",
+        "compliance_subscription",
+      ],
+      subscription_billing_cycle: ["monthly", "annual"],
+      subscription_product: [
+        "ai_pro",
+        "alumni_community",
+        "compliance",
+        "circle_membership",
+      ],
+      subscription_status: [
+        "active",
+        "paused",
+        "cancelled",
+        "past_due",
+        "trialing",
+      ],
       tool_name: [
         "niche_generator",
         "rate_card_builder",
