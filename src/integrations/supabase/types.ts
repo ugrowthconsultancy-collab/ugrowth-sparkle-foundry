@@ -52,35 +52,38 @@ export type Database = {
       }
       ai_conversations: {
         Row: {
+          anon_id: string | null
           archetype_detected: string | null
           created_at: string
           id: string
           is_archived: boolean
           last_message_at: string
           message_count: number
-          profile_id: string
+          profile_id: string | null
           title: string
           updated_at: string
         }
         Insert: {
+          anon_id?: string | null
           archetype_detected?: string | null
           created_at?: string
           id?: string
           is_archived?: boolean
           last_message_at?: string
           message_count?: number
-          profile_id: string
+          profile_id?: string | null
           title?: string
           updated_at?: string
         }
         Update: {
+          anon_id?: string | null
           archetype_detected?: string | null
           created_at?: string
           id?: string
           is_archived?: boolean
           last_message_at?: string
           message_count?: number
-          profile_id?: string
+          profile_id?: string | null
           title?: string
           updated_at?: string
         }
