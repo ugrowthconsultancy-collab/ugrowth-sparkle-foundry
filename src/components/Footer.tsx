@@ -56,7 +56,6 @@ export function Footer() {
               <ul className="mt-4 space-y-3">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    {/* @ts-expect-error placeholder routes */}
                     <Link
                       to={link.to}
                       className="text-sm text-muted-foreground hover:text-accent transition-colors"

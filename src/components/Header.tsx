@@ -45,7 +45,6 @@ export function Header() {
 
         <nav className="hidden lg:flex items-center gap-7">
           {NAV.map((item) => (
-            // @ts-expect-error placeholder routes — not yet defined
             <Link
               key={item.to}
               to={item.to}
@@ -60,7 +59,6 @@ export function Header() {
         <div className="hidden lg:flex items-center gap-3">
           <LanguageToggle lang={lang} onChange={setLang} />
           <Button variant="ghost" size="sm" asChild>
-            {/* @ts-expect-error placeholder route */}
             <Link to="/login">Login</Link>
           </Button>
         </div>
@@ -108,7 +106,6 @@ export function Header() {
             <div className="mt-auto p-4 border-t border-border space-y-3">
               <LanguageToggle lang={lang} onChange={setLang} />
               <Button variant="ghost" className="w-full" asChild>
-                {/* @ts-expect-error placeholder route */}
                 <Link to="/login" onClick={() => setOpen(false)}>Login</Link>
               </Button>
             </div>
