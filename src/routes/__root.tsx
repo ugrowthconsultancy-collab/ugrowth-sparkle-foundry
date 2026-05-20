@@ -140,6 +140,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <LanguageBoot />
         <div className="flex min-h-screen flex-col bg-background">
           {!isAdmin && <Header />}
           <main className="flex-1 flex flex-col">
@@ -150,4 +151,9 @@ function RootComponent() {
       </AuthProvider>
     </QueryClientProvider>
   );
+}
+
+function LanguageBoot() {
+  useLanguage();
+  return null;
 }
