@@ -45,7 +45,7 @@ function LoginPage() {
         try {
           sessionStorage.removeItem("postLoginRedirect");
         } catch {}
-        navigate({ to: dest });
+        navigate({ to: dest as any });
       } else {
         navigate({ to: "/dashboard" });
       }

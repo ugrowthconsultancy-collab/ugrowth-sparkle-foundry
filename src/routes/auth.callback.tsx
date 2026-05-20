@@ -76,7 +76,7 @@ function CallbackPage() {
       if (!profile.current_role) {
         if (!cancelled) navigate({ to: "/onboarding" });
       } else if (postLogin && postLogin.startsWith("/")) {
-        if (!cancelled) navigate({ to: postLogin });
+        if (!cancelled) navigate({ to: postLogin as any });
       } else {
         if (!cancelled) navigate({ to: "/dashboard" });
       }
