@@ -12,6 +12,7 @@ import { savePendingConsent } from "@/lib/consent-store";
 const searchSchema = z.object({
   email: z.string().optional(),
   message: z.string().optional(),
+  redirect: z.string().optional(),
 });
 
 export const Route = createFileRoute("/login")({
@@ -33,8 +34,23 @@ function LoginPage() {
   const [cooldown, setCooldown] = React.useState(0);
 
   React.useEffect(() => {
-    if (!loading && user) navigate({ to: "/dashboard" });
-  }, [loading, user, navigate]);
+    if (!loading && user) {
+      let dest = search.redirect;
+      if (!dest) {
+        try {
+          dest = sessionStorage.getItem("postLoginRedirect") ?? undefined;
+        } catch {}
+      }
+      if (dest && dest.startsWith("/")) {
+        try {
+          sessionStorage.removeItem("postLoginRedirect");
+        } catch {}
+        navigate({ to: dest });
+      } else {
+        navigate({ to: "/dashboard" });
+      }
+    }
+  }, [loading, user, navigate, search.redirect]);
 
   React.useEffect(() => {
     if (cooldown <= 0) return;
