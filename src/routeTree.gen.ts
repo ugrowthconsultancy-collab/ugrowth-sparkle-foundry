@@ -21,6 +21,12 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
+import { Route as AdminToolOutputsRouteImport } from './routes/admin.tool-outputs'
+import { Route as AdminProfilesRouteImport } from './routes/admin.profiles'
+import { Route as AdminPartnersRouteImport } from './routes/admin.partners'
+import { Route as AdminCampaignTrackingRouteImport } from './routes/admin.campaign-tracking'
+import { Route as AdminAiConversationsRouteImport } from './routes/admin.ai-conversations'
+import { Route as AdminAiConversationsIdRouteImport } from './routes/admin.ai-conversations.$id'
 
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
@@ -82,6 +88,36 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
   path: '/auth/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminToolOutputsRoute = AdminToolOutputsRouteImport.update({
+  id: '/tool-outputs',
+  path: '/tool-outputs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProfilesRoute = AdminProfilesRouteImport.update({
+  id: '/profiles',
+  path: '/profiles',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPartnersRoute = AdminPartnersRouteImport.update({
+  id: '/partners',
+  path: '/partners',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCampaignTrackingRoute = AdminCampaignTrackingRouteImport.update({
+  id: '/campaign-tracking',
+  path: '/campaign-tracking',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAiConversationsRoute = AdminAiConversationsRouteImport.update({
+  id: '/ai-conversations',
+  path: '/ai-conversations',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAiConversationsIdRoute = AdminAiConversationsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminAiConversationsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -94,8 +130,14 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
+  '/admin/ai-conversations': typeof AdminAiConversationsRouteWithChildren
+  '/admin/campaign-tracking': typeof AdminCampaignTrackingRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/profiles': typeof AdminProfilesRoute
+  '/admin/tool-outputs': typeof AdminToolOutputsRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -107,8 +149,14 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
+  '/admin/ai-conversations': typeof AdminAiConversationsRouteWithChildren
+  '/admin/campaign-tracking': typeof AdminCampaignTrackingRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/profiles': typeof AdminProfilesRoute
+  '/admin/tool-outputs': typeof AdminToolOutputsRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin': typeof AdminIndexRoute
+  '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -122,8 +170,14 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
+  '/admin/ai-conversations': typeof AdminAiConversationsRouteWithChildren
+  '/admin/campaign-tracking': typeof AdminCampaignTrackingRoute
+  '/admin/partners': typeof AdminPartnersRoute
+  '/admin/profiles': typeof AdminProfilesRoute
+  '/admin/tool-outputs': typeof AdminToolOutputsRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
+  '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -138,8 +192,14 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/terms'
+    | '/admin/ai-conversations'
+    | '/admin/campaign-tracking'
+    | '/admin/partners'
+    | '/admin/profiles'
+    | '/admin/tool-outputs'
     | '/auth/callback'
     | '/admin/'
+    | '/admin/ai-conversations/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -151,8 +211,14 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/terms'
+    | '/admin/ai-conversations'
+    | '/admin/campaign-tracking'
+    | '/admin/partners'
+    | '/admin/profiles'
+    | '/admin/tool-outputs'
     | '/auth/callback'
     | '/admin'
+    | '/admin/ai-conversations/$id'
   id:
     | '__root__'
     | '/'
@@ -165,8 +231,14 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/terms'
+    | '/admin/ai-conversations'
+    | '/admin/campaign-tracking'
+    | '/admin/partners'
+    | '/admin/profiles'
+    | '/admin/tool-outputs'
     | '/auth/callback'
     | '/admin/'
+    | '/admin/ai-conversations/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -269,14 +341,77 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/tool-outputs': {
+      id: '/admin/tool-outputs'
+      path: '/tool-outputs'
+      fullPath: '/admin/tool-outputs'
+      preLoaderRoute: typeof AdminToolOutputsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/profiles': {
+      id: '/admin/profiles'
+      path: '/profiles'
+      fullPath: '/admin/profiles'
+      preLoaderRoute: typeof AdminProfilesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/partners': {
+      id: '/admin/partners'
+      path: '/partners'
+      fullPath: '/admin/partners'
+      preLoaderRoute: typeof AdminPartnersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/campaign-tracking': {
+      id: '/admin/campaign-tracking'
+      path: '/campaign-tracking'
+      fullPath: '/admin/campaign-tracking'
+      preLoaderRoute: typeof AdminCampaignTrackingRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/ai-conversations': {
+      id: '/admin/ai-conversations'
+      path: '/ai-conversations'
+      fullPath: '/admin/ai-conversations'
+      preLoaderRoute: typeof AdminAiConversationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/ai-conversations/$id': {
+      id: '/admin/ai-conversations/$id'
+      path: '/$id'
+      fullPath: '/admin/ai-conversations/$id'
+      preLoaderRoute: typeof AdminAiConversationsIdRouteImport
+      parentRoute: typeof AdminAiConversationsRoute
+    }
   }
 }
 
+interface AdminAiConversationsRouteChildren {
+  AdminAiConversationsIdRoute: typeof AdminAiConversationsIdRoute
+}
+
+const AdminAiConversationsRouteChildren: AdminAiConversationsRouteChildren = {
+  AdminAiConversationsIdRoute: AdminAiConversationsIdRoute,
+}
+
+const AdminAiConversationsRouteWithChildren =
+  AdminAiConversationsRoute._addFileChildren(AdminAiConversationsRouteChildren)
+
 interface AdminRouteChildren {
+  AdminAiConversationsRoute: typeof AdminAiConversationsRouteWithChildren
+  AdminCampaignTrackingRoute: typeof AdminCampaignTrackingRoute
+  AdminPartnersRoute: typeof AdminPartnersRoute
+  AdminProfilesRoute: typeof AdminProfilesRoute
+  AdminToolOutputsRoute: typeof AdminToolOutputsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAiConversationsRoute: AdminAiConversationsRouteWithChildren,
+  AdminCampaignTrackingRoute: AdminCampaignTrackingRoute,
+  AdminPartnersRoute: AdminPartnersRoute,
+  AdminProfilesRoute: AdminProfilesRoute,
+  AdminToolOutputsRoute: AdminToolOutputsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
@@ -298,3 +433,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
