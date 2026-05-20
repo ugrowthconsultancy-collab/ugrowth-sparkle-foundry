@@ -1,7 +1,7 @@
 // Server-only Gemini helper. Do NOT import in client code.
 const API_BASE = "https://generativelanguage.googleapis.com/v1beta/models";
 
-export type GeminiModel = "gemini-1.5-flash" | "gemini-1.5-pro";
+export type GeminiModel = "gemini-2.5-flash" | "gemini-2.5-pro";
 
 export type GeminiMessage = { role: "user" | "model"; content: string };
 
@@ -143,7 +143,7 @@ export async function callGemini(opts: {
 }): Promise<string> {
   const key = process.env.GEMINI_API_KEY;
   if (!key) throw new Error("GEMINI_API_KEY is not configured");
-  const model = opts.model ?? "gemini-1.5-flash";
+  const model = opts.model ?? "gemini-2.5-flash";
   const body = {
     systemInstruction: opts.systemPrompt
       ? { role: "system", parts: [{ text: opts.systemPrompt }] }
@@ -181,8 +181,8 @@ export async function callGemini(opts: {
 /** Pick model based on question complexity (length + keywords). */
 export function pickModel(userText: string): GeminiModel {
   const t = userText.trim();
-  if (t.length > 400) return "gemini-1.5-pro";
+  if (t.length > 400) return "gemini-2.5-pro";
   if (/\b(strategy|roadmap|plan|legal|gst|tax|incorporat|compliance|pricing model|business model)\b/i.test(t))
-    return "gemini-1.5-pro";
-  return "gemini-1.5-flash";
+    return "gemini-2.5-pro";
+  return "gemini-2.5-flash";
 }
