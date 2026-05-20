@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UpgradeProRouteImport } from './routes/upgrade-pro'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as ProfileRouteImport } from './routes/profile'
@@ -43,6 +44,11 @@ import { Route as AdminAiConversationsRouteImport } from './routes/admin.ai-conv
 import { Route as AdminAdminLogsRouteImport } from './routes/admin.admin-logs'
 import { Route as AdminAiConversationsIdRouteImport } from './routes/admin.ai-conversations.$id'
 
+const UpgradeProRoute = UpgradeProRouteImport.update({
+  id: '/upgrade-pro',
+  path: '/upgrade-pro',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -223,6 +229,7 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
+  '/upgrade-pro': typeof UpgradeProRoute
   '/admin/admin-logs': typeof AdminAdminLogsRoute
   '/admin/ai-conversations': typeof AdminAiConversationsRouteWithChildren
   '/admin/campaign-tracking': typeof AdminCampaignTrackingRoute
@@ -257,6 +264,7 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
+  '/upgrade-pro': typeof UpgradeProRoute
   '/admin/admin-logs': typeof AdminAdminLogsRoute
   '/admin/ai-conversations': typeof AdminAiConversationsRouteWithChildren
   '/admin/campaign-tracking': typeof AdminCampaignTrackingRoute
@@ -293,6 +301,7 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
+  '/upgrade-pro': typeof UpgradeProRoute
   '/admin/admin-logs': typeof AdminAdminLogsRoute
   '/admin/ai-conversations': typeof AdminAiConversationsRouteWithChildren
   '/admin/campaign-tracking': typeof AdminCampaignTrackingRoute
@@ -330,6 +339,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/terms'
+    | '/upgrade-pro'
     | '/admin/admin-logs'
     | '/admin/ai-conversations'
     | '/admin/campaign-tracking'
@@ -364,6 +374,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/terms'
+    | '/upgrade-pro'
     | '/admin/admin-logs'
     | '/admin/ai-conversations'
     | '/admin/campaign-tracking'
@@ -399,6 +410,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/terms'
+    | '/upgrade-pro'
     | '/admin/admin-logs'
     | '/admin/ai-conversations'
     | '/admin/campaign-tracking'
@@ -435,6 +447,7 @@ export interface RootRouteChildren {
   ProfileRoute: typeof ProfileRoute
   SettingsRoute: typeof SettingsRoute
   TermsRoute: typeof TermsRoute
+  UpgradeProRoute: typeof UpgradeProRoute
   AuthCallbackRoute: typeof AuthCallbackRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
   StoriesSlugRoute: typeof StoriesSlugRoute
@@ -444,6 +457,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/upgrade-pro': {
+      id: '/upgrade-pro'
+      path: '/upgrade-pro'
+      fullPath: '/upgrade-pro'
+      preLoaderRoute: typeof UpgradeProRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -739,6 +759,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProfileRoute: ProfileRoute,
   SettingsRoute: SettingsRoute,
   TermsRoute: TermsRoute,
+  UpgradeProRoute: UpgradeProRoute,
   AuthCallbackRoute: AuthCallbackRoute,
   ServicesSlugRoute: ServicesSlugRoute,
   StoriesSlugRoute: StoriesSlugRoute,
