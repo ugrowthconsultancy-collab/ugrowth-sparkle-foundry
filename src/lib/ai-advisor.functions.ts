@@ -56,16 +56,14 @@ async function appendPair(opts: {
     .eq("id", conversationId)
     .single();
   const newCount = (conv?.message_count ?? 0) + 2;
-  const patch: Record<string, unknown> = {
-    message_count: newCount,
-    last_message_at: new Date().toISOString(),
-  };
-  if (!conv?.title || conv.title === "Untitled conversation") {
-    patch.title = titleFromContent(userContent);
-  }
+  const shouldRetitle = !conv?.title || conv.title === "Untitled conversation";
   await supabaseAdmin
     .from("ai_conversations")
-    .update(patch)
+    .update({
+      message_count: newCount,
+      last_message_at: new Date().toISOString(),
+      ...(shouldRetitle ? { title: titleFromContent(userContent) } : {}),
+    })
     .eq("id", conversationId);
 
   return { userMsg, assistantMsg };
