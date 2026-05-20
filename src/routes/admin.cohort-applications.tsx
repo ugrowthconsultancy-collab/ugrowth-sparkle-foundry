@@ -57,9 +57,12 @@ function ApplicationsPage() {
   }, []);
 
   async function setScreening(row: Row, status: string, note?: string) {
-    const updates: Record<string, unknown> = { screening_status: status };
+    const updates: { screening_status: string; enrolled_at?: string } = { screening_status: status };
     if (status === "accepted") updates.enrolled_at = new Date().toISOString();
-    const { error } = await supabase.from("cohort_applications").update(updates).eq("id", row.id);
+    const { error } = await supabase
+      .from("cohort_applications")
+      .update(updates as never)
+      .eq("id", row.id);
     if (error) return toast.error(error.message);
     await logAdminAction({
       action: `cohort_application.${status}`,

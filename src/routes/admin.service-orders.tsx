@@ -86,9 +86,12 @@ function ServiceOrdersPage() {
   }, []);
 
   async function transition(row: Row, status: string) {
-    const updates: Record<string, unknown> = { status };
+    const updates: { status: string; completed_at?: string } = { status };
     if (status === "completed") updates.completed_at = new Date().toISOString();
-    const { error } = await supabase.from("service_orders").update(updates).eq("id", row.id);
+    const { error } = await supabase
+      .from("service_orders")
+      .update(updates as never)
+      .eq("id", row.id);
     if (error) return toast.error(error.message);
     await logAdminAction({
       action: `service_order.${status}`,

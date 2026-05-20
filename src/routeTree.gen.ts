@@ -21,11 +21,19 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AuthCallbackRouteImport } from './routes/auth.callback'
+import { Route as AdminWaitlistsRouteImport } from './routes/admin.waitlists'
 import { Route as AdminToolOutputsRouteImport } from './routes/admin.tool-outputs'
+import { Route as AdminTestimonialsRouteImport } from './routes/admin.testimonials'
+import { Route as AdminSubscriptionsRouteImport } from './routes/admin.subscriptions'
+import { Route as AdminServiceOrdersRouteImport } from './routes/admin.service-orders'
 import { Route as AdminProfilesRouteImport } from './routes/admin.profiles'
 import { Route as AdminPartnersRouteImport } from './routes/admin.partners'
+import { Route as AdminContentResourcesRouteImport } from './routes/admin.content-resources'
+import { Route as AdminCohortsRouteImport } from './routes/admin.cohorts'
+import { Route as AdminCohortApplicationsRouteImport } from './routes/admin.cohort-applications'
 import { Route as AdminCampaignTrackingRouteImport } from './routes/admin.campaign-tracking'
 import { Route as AdminAiConversationsRouteImport } from './routes/admin.ai-conversations'
+import { Route as AdminAdminLogsRouteImport } from './routes/admin.admin-logs'
 import { Route as AdminAiConversationsIdRouteImport } from './routes/admin.ai-conversations.$id'
 
 const TermsRoute = TermsRouteImport.update({
@@ -88,9 +96,29 @@ const AuthCallbackRoute = AuthCallbackRouteImport.update({
   path: '/auth/callback',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminWaitlistsRoute = AdminWaitlistsRouteImport.update({
+  id: '/waitlists',
+  path: '/waitlists',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminToolOutputsRoute = AdminToolOutputsRouteImport.update({
   id: '/tool-outputs',
   path: '/tool-outputs',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTestimonialsRoute = AdminTestimonialsRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminSubscriptionsRoute = AdminSubscriptionsRouteImport.update({
+  id: '/subscriptions',
+  path: '/subscriptions',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminServiceOrdersRoute = AdminServiceOrdersRouteImport.update({
+  id: '/service-orders',
+  path: '/service-orders',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminProfilesRoute = AdminProfilesRouteImport.update({
@@ -103,6 +131,21 @@ const AdminPartnersRoute = AdminPartnersRouteImport.update({
   path: '/partners',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminContentResourcesRoute = AdminContentResourcesRouteImport.update({
+  id: '/content-resources',
+  path: '/content-resources',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCohortsRoute = AdminCohortsRouteImport.update({
+  id: '/cohorts',
+  path: '/cohorts',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCohortApplicationsRoute = AdminCohortApplicationsRouteImport.update({
+  id: '/cohort-applications',
+  path: '/cohort-applications',
+  getParentRoute: () => AdminRoute,
+} as any)
 const AdminCampaignTrackingRoute = AdminCampaignTrackingRouteImport.update({
   id: '/campaign-tracking',
   path: '/campaign-tracking',
@@ -111,6 +154,11 @@ const AdminCampaignTrackingRoute = AdminCampaignTrackingRouteImport.update({
 const AdminAiConversationsRoute = AdminAiConversationsRouteImport.update({
   id: '/ai-conversations',
   path: '/ai-conversations',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminAdminLogsRoute = AdminAdminLogsRouteImport.update({
+  id: '/admin-logs',
+  path: '/admin-logs',
   getParentRoute: () => AdminRoute,
 } as any)
 const AdminAiConversationsIdRoute = AdminAiConversationsIdRouteImport.update({
@@ -130,11 +178,19 @@ export interface FileRoutesByFullPath {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
+  '/admin/admin-logs': typeof AdminAdminLogsRoute
   '/admin/ai-conversations': typeof AdminAiConversationsRouteWithChildren
   '/admin/campaign-tracking': typeof AdminCampaignTrackingRoute
+  '/admin/cohort-applications': typeof AdminCohortApplicationsRoute
+  '/admin/cohorts': typeof AdminCohortsRoute
+  '/admin/content-resources': typeof AdminContentResourcesRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/profiles': typeof AdminProfilesRoute
+  '/admin/service-orders': typeof AdminServiceOrdersRoute
+  '/admin/subscriptions': typeof AdminSubscriptionsRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/tool-outputs': typeof AdminToolOutputsRoute
+  '/admin/waitlists': typeof AdminWaitlistsRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
@@ -149,11 +205,19 @@ export interface FileRoutesByTo {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
+  '/admin/admin-logs': typeof AdminAdminLogsRoute
   '/admin/ai-conversations': typeof AdminAiConversationsRouteWithChildren
   '/admin/campaign-tracking': typeof AdminCampaignTrackingRoute
+  '/admin/cohort-applications': typeof AdminCohortApplicationsRoute
+  '/admin/cohorts': typeof AdminCohortsRoute
+  '/admin/content-resources': typeof AdminContentResourcesRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/profiles': typeof AdminProfilesRoute
+  '/admin/service-orders': typeof AdminServiceOrdersRoute
+  '/admin/subscriptions': typeof AdminSubscriptionsRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/tool-outputs': typeof AdminToolOutputsRoute
+  '/admin/waitlists': typeof AdminWaitlistsRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin': typeof AdminIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
@@ -170,11 +234,19 @@ export interface FileRoutesById {
   '/profile': typeof ProfileRoute
   '/settings': typeof SettingsRoute
   '/terms': typeof TermsRoute
+  '/admin/admin-logs': typeof AdminAdminLogsRoute
   '/admin/ai-conversations': typeof AdminAiConversationsRouteWithChildren
   '/admin/campaign-tracking': typeof AdminCampaignTrackingRoute
+  '/admin/cohort-applications': typeof AdminCohortApplicationsRoute
+  '/admin/cohorts': typeof AdminCohortsRoute
+  '/admin/content-resources': typeof AdminContentResourcesRoute
   '/admin/partners': typeof AdminPartnersRoute
   '/admin/profiles': typeof AdminProfilesRoute
+  '/admin/service-orders': typeof AdminServiceOrdersRoute
+  '/admin/subscriptions': typeof AdminSubscriptionsRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/tool-outputs': typeof AdminToolOutputsRoute
+  '/admin/waitlists': typeof AdminWaitlistsRoute
   '/auth/callback': typeof AuthCallbackRoute
   '/admin/': typeof AdminIndexRoute
   '/admin/ai-conversations/$id': typeof AdminAiConversationsIdRoute
@@ -192,11 +264,19 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/terms'
+    | '/admin/admin-logs'
     | '/admin/ai-conversations'
     | '/admin/campaign-tracking'
+    | '/admin/cohort-applications'
+    | '/admin/cohorts'
+    | '/admin/content-resources'
     | '/admin/partners'
     | '/admin/profiles'
+    | '/admin/service-orders'
+    | '/admin/subscriptions'
+    | '/admin/testimonials'
     | '/admin/tool-outputs'
+    | '/admin/waitlists'
     | '/auth/callback'
     | '/admin/'
     | '/admin/ai-conversations/$id'
@@ -211,11 +291,19 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/terms'
+    | '/admin/admin-logs'
     | '/admin/ai-conversations'
     | '/admin/campaign-tracking'
+    | '/admin/cohort-applications'
+    | '/admin/cohorts'
+    | '/admin/content-resources'
     | '/admin/partners'
     | '/admin/profiles'
+    | '/admin/service-orders'
+    | '/admin/subscriptions'
+    | '/admin/testimonials'
     | '/admin/tool-outputs'
+    | '/admin/waitlists'
     | '/auth/callback'
     | '/admin'
     | '/admin/ai-conversations/$id'
@@ -231,11 +319,19 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings'
     | '/terms'
+    | '/admin/admin-logs'
     | '/admin/ai-conversations'
     | '/admin/campaign-tracking'
+    | '/admin/cohort-applications'
+    | '/admin/cohorts'
+    | '/admin/content-resources'
     | '/admin/partners'
     | '/admin/profiles'
+    | '/admin/service-orders'
+    | '/admin/subscriptions'
+    | '/admin/testimonials'
     | '/admin/tool-outputs'
+    | '/admin/waitlists'
     | '/auth/callback'
     | '/admin/'
     | '/admin/ai-conversations/$id'
@@ -341,11 +437,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthCallbackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/waitlists': {
+      id: '/admin/waitlists'
+      path: '/waitlists'
+      fullPath: '/admin/waitlists'
+      preLoaderRoute: typeof AdminWaitlistsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/tool-outputs': {
       id: '/admin/tool-outputs'
       path: '/tool-outputs'
       fullPath: '/admin/tool-outputs'
       preLoaderRoute: typeof AdminToolOutputsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/testimonials': {
+      id: '/admin/testimonials'
+      path: '/testimonials'
+      fullPath: '/admin/testimonials'
+      preLoaderRoute: typeof AdminTestimonialsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/subscriptions': {
+      id: '/admin/subscriptions'
+      path: '/subscriptions'
+      fullPath: '/admin/subscriptions'
+      preLoaderRoute: typeof AdminSubscriptionsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/service-orders': {
+      id: '/admin/service-orders'
+      path: '/service-orders'
+      fullPath: '/admin/service-orders'
+      preLoaderRoute: typeof AdminServiceOrdersRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/profiles': {
@@ -362,6 +486,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminPartnersRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/content-resources': {
+      id: '/admin/content-resources'
+      path: '/content-resources'
+      fullPath: '/admin/content-resources'
+      preLoaderRoute: typeof AdminContentResourcesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/cohorts': {
+      id: '/admin/cohorts'
+      path: '/cohorts'
+      fullPath: '/admin/cohorts'
+      preLoaderRoute: typeof AdminCohortsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/cohort-applications': {
+      id: '/admin/cohort-applications'
+      path: '/cohort-applications'
+      fullPath: '/admin/cohort-applications'
+      preLoaderRoute: typeof AdminCohortApplicationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/admin/campaign-tracking': {
       id: '/admin/campaign-tracking'
       path: '/campaign-tracking'
@@ -374,6 +519,13 @@ declare module '@tanstack/react-router' {
       path: '/ai-conversations'
       fullPath: '/admin/ai-conversations'
       preLoaderRoute: typeof AdminAiConversationsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/admin-logs': {
+      id: '/admin/admin-logs'
+      path: '/admin-logs'
+      fullPath: '/admin/admin-logs'
+      preLoaderRoute: typeof AdminAdminLogsRouteImport
       parentRoute: typeof AdminRoute
     }
     '/admin/ai-conversations/$id': {
@@ -398,20 +550,36 @@ const AdminAiConversationsRouteWithChildren =
   AdminAiConversationsRoute._addFileChildren(AdminAiConversationsRouteChildren)
 
 interface AdminRouteChildren {
+  AdminAdminLogsRoute: typeof AdminAdminLogsRoute
   AdminAiConversationsRoute: typeof AdminAiConversationsRouteWithChildren
   AdminCampaignTrackingRoute: typeof AdminCampaignTrackingRoute
+  AdminCohortApplicationsRoute: typeof AdminCohortApplicationsRoute
+  AdminCohortsRoute: typeof AdminCohortsRoute
+  AdminContentResourcesRoute: typeof AdminContentResourcesRoute
   AdminPartnersRoute: typeof AdminPartnersRoute
   AdminProfilesRoute: typeof AdminProfilesRoute
+  AdminServiceOrdersRoute: typeof AdminServiceOrdersRoute
+  AdminSubscriptionsRoute: typeof AdminSubscriptionsRoute
+  AdminTestimonialsRoute: typeof AdminTestimonialsRoute
   AdminToolOutputsRoute: typeof AdminToolOutputsRoute
+  AdminWaitlistsRoute: typeof AdminWaitlistsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAdminLogsRoute: AdminAdminLogsRoute,
   AdminAiConversationsRoute: AdminAiConversationsRouteWithChildren,
   AdminCampaignTrackingRoute: AdminCampaignTrackingRoute,
+  AdminCohortApplicationsRoute: AdminCohortApplicationsRoute,
+  AdminCohortsRoute: AdminCohortsRoute,
+  AdminContentResourcesRoute: AdminContentResourcesRoute,
   AdminPartnersRoute: AdminPartnersRoute,
   AdminProfilesRoute: AdminProfilesRoute,
+  AdminServiceOrdersRoute: AdminServiceOrdersRoute,
+  AdminSubscriptionsRoute: AdminSubscriptionsRoute,
+  AdminTestimonialsRoute: AdminTestimonialsRoute,
   AdminToolOutputsRoute: AdminToolOutputsRoute,
+  AdminWaitlistsRoute: AdminWaitlistsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
