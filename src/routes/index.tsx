@@ -767,7 +767,7 @@ function Home() {
         id="practice-launch"
         heading="Launch your first 10 clients with a real marketing engine. AI + a real human. Indian context. ₹4,999/month."
         cta="See how it works"
-        to="/services/$slug"
+        to="/services/practice-launch"
         trackLabel="teaser_practice_launch"
       />
       <TeaserBanner
