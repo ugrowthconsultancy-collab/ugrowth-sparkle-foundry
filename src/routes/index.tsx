@@ -287,32 +287,37 @@ function Hero() {
   );
 }
 
-const AUDIENCES = [
-  { title: "I have a job. I want to leave.", sub: "Plan your exit with a runway.", slug: "stuck-professional" },
-  { title: "I already do work on the side.", sub: "Turn the side hustle into a real practice.", slug: "side-hustler" },
-  { title: "I took a break. I want to come back.", sub: "Re-enter on your own terms.", slug: "returning-to-work" },
-  { title: "I'm young. I don't want a corporate job.", sub: "Build a practice instead of a CV.", slug: "rising-graduate" },
-  { title: "I work with clients. I need a system.", sub: "Pricing, intake, delivery — done right.", slug: "first-gen-consultant" },
-  { title: "I'm in a small city. I want to start here.", sub: "Build locally, sell anywhere.", slug: "tier2-dreamer" },
+const AUDIENCE_SLUGS = [
+  "stuck-professional",
+  "side-hustler",
+  "returning-to-work",
+  "rising-graduate",
+  "first-gen-consultant",
+  "tier2-dreamer",
 ] as const;
 
 function Audience() {
+  const { t } = useTranslation();
   return (
     <Section id="audience">
-      <h2 className="font-display text-3xl md:text-4xl text-primary">Which one is you?</h2>
+      <h2 className="font-display text-3xl md:text-4xl text-primary">{t("audience.title")}</h2>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {AUDIENCES.map((a) => (
+        {AUDIENCE_SLUGS.map((slug) => (
           <Link
-            key={a.slug}
+            key={slug}
             to="/tracks/$slug"
-            params={{ slug: a.slug }}
-            onClick={() => ctaClick(`audience_${a.slug}`, `/tracks/${a.slug}`)}
+            params={{ slug }}
+            onClick={() => ctaClick(`audience_${slug}`, `/tracks/${slug}`)}
             className="group rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md hover:border-accent/50"
           >
-            <h3 className="font-display text-lg text-primary leading-snug">{a.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{a.sub}</p>
+            <h3 className="font-display text-lg text-primary leading-snug">
+              {t(`audience.items.${slug}.title`)}
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {t(`audience.items.${slug}.sub`)}
+            </p>
             <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
-              Show me how <ArrowRight className="h-4 w-4" />
+              {t("audience.showMe")} <ArrowRight className="h-4 w-4" />
             </span>
           </Link>
         ))}
@@ -339,9 +344,10 @@ const STORIES = [
 ] as const;
 
 function Stories() {
+  const { t } = useTranslation();
   return (
     <Section id="stories" className="bg-secondary/40">
-      <h2 className="font-display text-3xl md:text-4xl text-primary">From founders who did this</h2>
+      <h2 className="font-display text-3xl md:text-4xl text-primary">{t("stories.title")}</h2>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
         {STORIES.map((s) => (
           <Link
@@ -360,8 +366,8 @@ function Stories() {
           </Link>
         ))}
         <div className="rounded-xl border border-dashed border-border bg-transparent p-6 flex flex-col justify-center">
-          <h3 className="font-display text-lg text-muted-foreground">More founder stories</h3>
-          <p className="mt-2 text-sm text-muted-foreground">joining the wall soon</p>
+          <h3 className="font-display text-lg text-muted-foreground">{t("stories.more")}</h3>
+          <p className="mt-2 text-sm text-muted-foreground">{t("stories.moreSub")}</p>
         </div>
       </div>
     </Section>
@@ -369,14 +375,12 @@ function Stories() {
 }
 
 function AiPreview() {
+  const { t } = useTranslation();
   return (
     <Section id="ai-preview">
       <div className="max-w-3xl">
-        <h2 className="font-display text-3xl md:text-4xl text-primary">Try our AI Advisor</h2>
-        <p className="mt-3 text-muted-foreground">
-          Ask any question about starting or running your practice. Free, no signup needed for the
-          first 5 questions.
-        </p>
+        <h2 className="font-display text-3xl md:text-4xl text-primary">{t("ai.title")}</h2>
+        <p className="mt-3 text-muted-foreground">{t("ai.subtitle")}</p>
       </div>
       <div className="mt-8 max-w-3xl space-y-3">
         <div className="flex justify-end">
