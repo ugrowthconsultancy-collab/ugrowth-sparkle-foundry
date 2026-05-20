@@ -13,10 +13,10 @@ import {
   Archive,
   Trash2,
   Download,
-  X,
   Shield,
   Lock,
   Crown,
+
 } from "lucide-react";
 
 import { supabase } from "@/integrations/supabase/client";
