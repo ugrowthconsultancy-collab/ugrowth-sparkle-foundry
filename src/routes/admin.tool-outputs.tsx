@@ -21,9 +21,10 @@ type Row = {
   shared_to_email: string | null;
 };
 
-const TOOLS = ["fee_calculator", "revenue_planner", "viability_score", "pricing_helper"].map((v) => ({
-  value: v, label: v.replace(/_/g, " "),
-}));
+const TOOLS = [
+  "niche_generator", "rate_card_builder", "gst_checker", "compliance_calendar",
+  "working_capital_calc", "founder_vital_signs", "pricing_calculator", "should_i_switch",
+].map((v) => ({ value: v, label: v.replace(/_/g, " ") }));
 
 function ToolsPage() {
   const [selected, setSelected] = React.useState<Row | null>(null);
