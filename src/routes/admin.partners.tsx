@@ -39,10 +39,11 @@ type Partner = {
   internal_notes: string | null;
 };
 
-const PARTNER_TYPES = ["ca", "advocate", "mentor", "workshop_host"].map((v) => ({
+const PARTNER_TYPES = ["ca", "advocate", "mentor", "workshop_speaker", "cohort_lead"].map((v) => ({
   value: v,
   label: v.replace(/_/g, " "),
 }));
+type PartnerType = "ca" | "advocate" | "mentor" | "workshop_speaker" | "cohort_lead";
 
 function maskAccount(bank: Record<string, unknown>) {
   const acct = (bank?.account_number as string) ?? "";
@@ -193,6 +194,7 @@ function PartnerForm({
     setSaving(true);
     const payload = {
       ...form,
+      partner_type: form.partner_type as PartnerType,
       specialisations: form.specialisations
         .split(",")
         .map((s) => s.trim())

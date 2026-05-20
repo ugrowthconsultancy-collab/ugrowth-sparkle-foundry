@@ -64,7 +64,7 @@ function CampaignPage() {
     const names = await fetchProfileNames(rows.map((r) => r.profile_id));
     return rows.map((r) => ({
       ...r,
-      profile_name: r.profile_id ? names[r.profile_id] : null,
+      profile_name: r.profile_id ? names[r.profile_id] : undefined,
     }));
   }, []);
 
