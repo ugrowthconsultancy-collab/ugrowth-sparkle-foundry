@@ -1,0 +1,155 @@
+{
+  "nav": {
+    "findMentor": "Find a Mentor",
+    "resources": "Resources",
+    "cohort": "Cohort",
+    "services": "Services",
+    "about": "About",
+    "login": "Login",
+    "dashboard": "My Dashboard",
+    "profile": "My Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "menu": "Menu"
+  },
+  "hero": {
+    "title": "Free help to start your own practice in India.",
+    "subtitle": "Real methodology. Real tools. Real mentors. No catch.",
+    "ctaPrimary": "Try the free AI Advisor",
+    "ctaSecondary": "Get the free playbook",
+    "badge1": "Methodology certified by MEPSC, Government of India",
+    "badge2": "University of Mumbai Board of Studies affiliated",
+    "badge3": "UGrowth Consultancy Pvt Ltd"
+  },
+  "audience": {
+    "title": "Which one is you?",
+    "showMe": "Show me how",
+    "items": {
+      "stuck-professional": { "title": "I have a job. I want to leave.", "sub": "Plan your exit with a runway." },
+      "side-hustler": { "title": "I already do work on the side.", "sub": "Turn the side hustle into a real practice." },
+      "returning-to-work": { "title": "I took a break. I want to come back.", "sub": "Re-enter on your own terms." },
+      "rising-graduate": { "title": "I'm young. I don't want a corporate job.", "sub": "Build a practice instead of a CV." },
+      "first-gen-consultant": { "title": "I work with clients. I need a system.", "sub": "Pricing, intake, delivery — done right." },
+      "tier2-dreamer": { "title": "I'm in a small city. I want to start here.", "sub": "Build locally, sell anywhere." }
+    }
+  },
+  "stories": {
+    "title": "From founders who did this",
+    "more": "More founder stories",
+    "moreSub": "joining the wall soon"
+  },
+  "ai": {
+    "title": "Try our AI Advisor",
+    "subtitle": "Ask any question about starting or running your practice. Free, no signup needed for the first 5 questions.",
+    "start": "Start your own conversation"
+  },
+  "tools": {
+    "title": "Free tools that solve real problems in 5 minutes",
+    "tryFree": "Try it free"
+  },
+  "cohort": {
+    "title": "Our 12-week training",
+    "b1": "6 weeks foundation — methodology, mindset, market",
+    "b2": "4 weeks brand + pricing — niche, rate card, positioning",
+    "b3": "2 weeks first client outreach — pipeline, intake, close",
+    "b4": "Capstone project — your first real engagement",
+    "cert": "Government-recognised certification (MEPSC NSQF Level 5).",
+    "next": "Next batch",
+    "seats": "Seats",
+    "price": "Price",
+    "priceNote": "({next} from Cohort 2)",
+    "apply": "Apply for the next batch",
+    "tba": "TBA",
+    "loading": "Loading…"
+  },
+  "services": {
+    "title": "We do the boring stuff for you",
+    "getThis": "Get this done"
+  },
+  "teaser": {
+    "practiceLaunch": "Launch your first 10 clients with a real marketing engine. AI + a real human. Indian context. ₹4,999/month.",
+    "see": "See how it works",
+    "circles": "Don't do this alone. Join a curated circle of 10 other Indian founders in your city. Weekly Zoom + monthly chai meetup.",
+    "find": "Find your circle"
+  },
+  "newsletter": {
+    "title": "Free weekly insights for Indian founders",
+    "subtitle": "1 useful template + 1 honest piece of advice. No spam, no upsells.",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing…",
+    "thanks": "Thanks. We'll send the first email next Tuesday.",
+    "agree": "By subscribing you agree to our",
+    "privacy": "Privacy Policy",
+    "invalid": "Please enter a valid email.",
+    "error": "Something went wrong. Try again."
+  },
+  "finalCta": {
+    "title": "Mentoring is free. Always. Get started today.",
+    "primary": "Try the AI Advisor",
+    "secondary": "Get the playbook"
+  },
+  "sticky": { "label": "Try AI Advisor (free)" },
+  "footer": {
+    "tagline": "Free help to start your own practice in India. Real methodology, real tools, real outcomes. No catch.",
+    "cert": "Methodology certified by MEPSC, Ministry of Skill Development & Entrepreneurship.",
+    "affil": "University of Mumbai Board of Studies affiliated.",
+    "copyright": "© 2026 UGrowth Consultancy Pvt Ltd. Made with care for Indian small business owners."
+  },
+  "login": {
+    "title": "Sign in to UGrowth Consultancy",
+    "subtitle": "Enter your email. We'll send you a one-time login link.",
+    "emailLabel": "Email address",
+    "send": "Send me a login link",
+    "sending": "Sending...",
+    "both": "The link works for both sign-in and sign-up.",
+    "consent": "I agree to the Privacy Policy and Terms of Use. I understand my data is mine and I can request deletion any time.",
+    "marketing": "Send me one useful template per week. No spam, unsubscribe any time.",
+    "checkInbox": "Check your inbox",
+    "sentTo": "We sent a link to {{email}}. Click it to sign in.",
+    "resend": "Resend link",
+    "resendIn": "Resend in {{s}}s",
+    "tryDifferent": "Try a different email"
+  },
+  "onboarding": {
+    "step": "Step {{n}} of 3",
+    "q1": "What best describes you right now?",
+    "q1Sub": "Pick the one closest to your situation.",
+    "continue": "Continue",
+    "back": "Back",
+    "q2": "Which city are you in?",
+    "city": "City",
+    "cityPlaceholder": "Start typing your city...",
+    "other": "Other (specify)",
+    "enterCity": "Enter your city",
+    "pin": "PIN code",
+    "pinHint": "6 digits",
+    "pinError": "Enter a 6-digit Indian PIN code.",
+    "q3": "What's your preferred language?",
+    "finish": "Finish",
+    "saving": "Saving...",
+    "roles": {
+      "salaried": "I have a job and want to start something",
+      "side_hustling": "I already do some work on the side",
+      "returning_homemaker": "I took a career break and want to come back",
+      "first_gen_consultant": "I just finished college and don't want a corporate job",
+      "fully_independent": "I work with clients but need a system",
+      "tier2_dreamer": "I'm in a small city and want to start here"
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome, {{name}}",
+    "comingSoon": "Coming soon",
+    "cards": {
+      "ai": "AI Advisor",
+      "tools": "Free Tools",
+      "cohort": "Cohort Status",
+      "orders": "My Orders"
+    }
+  },
+  "brochure": {
+    "title": "Get the free playbook",
+    "desc": "We'll send the full playbook PDF to your email. Available soon.",
+    "submit": "Email it to me",
+    "note": "Brochure delivery activates in the next release."
+  }
+}

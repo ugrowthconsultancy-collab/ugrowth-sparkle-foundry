@@ -1,5 +1,6 @@
 import * as React from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import {
   Target,
   IndianRupee,
@@ -206,15 +207,14 @@ function HeroIllustration() {
 
 function BrochureModal({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = React.useState(false);
+  const { t } = useTranslation();
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Get the free playbook</DialogTitle>
-          <DialogDescription>
-            We'll send the full playbook PDF to your email. Available soon.
-          </DialogDescription>
+          <DialogTitle>{t("brochure.title")}</DialogTitle>
+          <DialogDescription>{t("brochure.desc")}</DialogDescription>
         </DialogHeader>
         <div className="space-y-3 pt-2">
           <Input type="email" placeholder="you@example.com" disabled />
@@ -223,11 +223,9 @@ function BrochureModal({ children }: { children: React.ReactNode }) {
             disabled
             onClick={() => ctaClick("brochure_submit", "/brochure")}
           >
-            Email it to me
+            {t("brochure.submit")}
           </Button>
-          <p className="text-xs text-muted-foreground">
-            Brochure delivery activates in the next release.
-          </p>
+          <p className="text-xs text-muted-foreground">{t("brochure.note")}</p>
         </div>
       </DialogContent>
     </Dialog>
@@ -238,6 +236,7 @@ function Hero() {
   React.useEffect(() => {
     track("homepage_view", {});
   }, []);
+  const { t } = useTranslation();
   const ref = useSectionView("hero");
   return (
     <section
@@ -248,10 +247,10 @@ function Hero() {
       <div className="mx-auto max-w-[1280px] px-4 lg:px-6 py-12 lg:py-24 grid lg:grid-cols-2 gap-10 items-center">
         <div className="order-2 lg:order-1">
           <h1 className="font-display font-semibold text-4xl md:text-5xl lg:text-6xl text-primary leading-[1.1]">
-            Free help to start your own practice in India.
+            {t("hero.title")}
           </h1>
           <p className="mt-5 text-base md:text-lg text-muted-foreground max-w-xl">
-            Real methodology. Real tools. Real mentors. No catch.
+            {t("hero.subtitle")}
           </p>
           <div className="mt-7 flex flex-col sm:flex-row gap-3">
             <Button size="lg" asChild>
@@ -259,7 +258,7 @@ function Hero() {
                 to="/ai-advisor"
                 onClick={() => ctaClick("hero_primary_ai_advisor", "/ai-advisor")}
               >
-                Try the free AI Advisor
+                {t("hero.ctaPrimary")}
               </Link>
             </Button>
             <BrochureModal>
@@ -268,14 +267,14 @@ function Hero() {
                 variant="ghost"
                 onClick={() => ctaClick("hero_secondary_brochure", "modal:brochure")}
               >
-                Get the free playbook
+                {t("hero.ctaSecondary")}
               </Button>
             </BrochureModal>
           </div>
           <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-xs text-muted-foreground">
-            <li>Methodology certified by MEPSC, Government of India</li>
-            <li>University of Mumbai Board of Studies affiliated</li>
-            <li>UGrowth Consultancy Pvt Ltd</li>
+            <li>{t("hero.badge1")}</li>
+            <li>{t("hero.badge2")}</li>
+            <li>{t("hero.badge3")}</li>
           </ul>
         </div>
         <div className="order-1 lg:order-2">
@@ -288,32 +287,37 @@ function Hero() {
   );
 }
 
-const AUDIENCES = [
-  { title: "I have a job. I want to leave.", sub: "Plan your exit with a runway.", slug: "stuck-professional" },
-  { title: "I already do work on the side.", sub: "Turn the side hustle into a real practice.", slug: "side-hustler" },
-  { title: "I took a break. I want to come back.", sub: "Re-enter on your own terms.", slug: "returning-to-work" },
-  { title: "I'm young. I don't want a corporate job.", sub: "Build a practice instead of a CV.", slug: "rising-graduate" },
-  { title: "I work with clients. I need a system.", sub: "Pricing, intake, delivery — done right.", slug: "first-gen-consultant" },
-  { title: "I'm in a small city. I want to start here.", sub: "Build locally, sell anywhere.", slug: "tier2-dreamer" },
+const AUDIENCE_SLUGS = [
+  "stuck-professional",
+  "side-hustler",
+  "returning-to-work",
+  "rising-graduate",
+  "first-gen-consultant",
+  "tier2-dreamer",
 ] as const;
 
 function Audience() {
+  const { t } = useTranslation();
   return (
     <Section id="audience">
-      <h2 className="font-display text-3xl md:text-4xl text-primary">Which one is you?</h2>
+      <h2 className="font-display text-3xl md:text-4xl text-primary">{t("audience.title")}</h2>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {AUDIENCES.map((a) => (
+        {AUDIENCE_SLUGS.map((slug) => (
           <Link
-            key={a.slug}
+            key={slug}
             to="/tracks/$slug"
-            params={{ slug: a.slug }}
-            onClick={() => ctaClick(`audience_${a.slug}`, `/tracks/${a.slug}`)}
+            params={{ slug }}
+            onClick={() => ctaClick(`audience_${slug}`, `/tracks/${slug}`)}
             className="group rounded-xl border border-border bg-card p-6 transition-all hover:-translate-y-0.5 hover:shadow-md hover:border-accent/50"
           >
-            <h3 className="font-display text-lg text-primary leading-snug">{a.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{a.sub}</p>
+            <h3 className="font-display text-lg text-primary leading-snug">
+              {t(`audience.items.${slug}.title`)}
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {t(`audience.items.${slug}.sub`)}
+            </p>
             <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
-              Show me how <ArrowRight className="h-4 w-4" />
+              {t("audience.showMe")} <ArrowRight className="h-4 w-4" />
             </span>
           </Link>
         ))}
@@ -340,9 +344,10 @@ const STORIES = [
 ] as const;
 
 function Stories() {
+  const { t } = useTranslation();
   return (
     <Section id="stories" className="bg-secondary/40">
-      <h2 className="font-display text-3xl md:text-4xl text-primary">From founders who did this</h2>
+      <h2 className="font-display text-3xl md:text-4xl text-primary">{t("stories.title")}</h2>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
         {STORIES.map((s) => (
           <Link
@@ -361,8 +366,8 @@ function Stories() {
           </Link>
         ))}
         <div className="rounded-xl border border-dashed border-border bg-transparent p-6 flex flex-col justify-center">
-          <h3 className="font-display text-lg text-muted-foreground">More founder stories</h3>
-          <p className="mt-2 text-sm text-muted-foreground">joining the wall soon</p>
+          <h3 className="font-display text-lg text-muted-foreground">{t("stories.more")}</h3>
+          <p className="mt-2 text-sm text-muted-foreground">{t("stories.moreSub")}</p>
         </div>
       </div>
     </Section>
@@ -370,14 +375,12 @@ function Stories() {
 }
 
 function AiPreview() {
+  const { t } = useTranslation();
   return (
     <Section id="ai-preview">
       <div className="max-w-3xl">
-        <h2 className="font-display text-3xl md:text-4xl text-primary">Try our AI Advisor</h2>
-        <p className="mt-3 text-muted-foreground">
-          Ask any question about starting or running your practice. Free, no signup needed for the
-          first 5 questions.
-        </p>
+        <h2 className="font-display text-3xl md:text-4xl text-primary">{t("ai.title")}</h2>
+        <p className="mt-3 text-muted-foreground">{t("ai.subtitle")}</p>
       </div>
       <div className="mt-8 max-w-3xl space-y-3">
         <div className="flex justify-end">
@@ -407,7 +410,7 @@ function AiPreview() {
             to="/ai-advisor"
             onClick={() => ctaClick("ai_preview_start_conversation", "/ai-advisor")}
           >
-            Start your own conversation <ArrowRight className="h-4 w-4" />
+            {t("ai.start")} <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>
       </div>
@@ -427,25 +430,24 @@ const TOOLS = [
 ] as const;
 
 function Tools() {
+  const { t } = useTranslation();
   return (
     <Section id="tools" className="bg-secondary/40">
-      <h2 className="font-display text-3xl md:text-4xl text-primary">
-        Free tools that solve real problems in 5 minutes
-      </h2>
+      <h2 className="font-display text-3xl md:text-4xl text-primary">{t("tools.title")}</h2>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {TOOLS.map((t) => (
+        {TOOLS.map((tool) => (
           <Link
-            key={t.slug}
+            key={tool.slug}
             to="/tools/$slug"
-            params={{ slug: t.slug }}
-            onClick={() => ctaClick(`tool_${t.slug}`, `/tools/${t.slug}`)}
+            params={{ slug: tool.slug }}
+            onClick={() => ctaClick(`tool_${tool.slug}`, `/tools/${tool.slug}`)}
             className="group rounded-xl border border-border bg-card p-5 hover:shadow-md hover:border-accent/50 transition-all flex flex-col"
           >
-            <t.icon className="h-6 w-6 text-accent" />
-            <h3 className="mt-4 font-display text-base text-primary leading-snug">{t.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground flex-1">{t.desc}</p>
+            <tool.icon className="h-6 w-6 text-accent" />
+            <h3 className="mt-4 font-display text-base text-primary leading-snug">{tool.title}</h3>
+            <p className="mt-2 text-sm text-muted-foreground flex-1">{tool.desc}</p>
             <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
-              Try it free <ArrowRight className="h-4 w-4" />
+              {t("tools.tryFree")} <ArrowRight className="h-4 w-4" />
             </span>
           </Link>
         ))}
@@ -489,46 +491,45 @@ function CohortBlock() {
     })();
   }, []);
 
+  const { t } = useTranslation();
   return (
     <Section id="cohort">
       <div className="grid lg:grid-cols-2 gap-10 items-start">
         <div>
-          <h2 className="font-display text-3xl md:text-4xl text-primary">Our 12-week training</h2>
+          <h2 className="font-display text-3xl md:text-4xl text-primary">{t("cohort.title")}</h2>
           <ul className="mt-6 space-y-3 text-sm text-foreground">
-            <li>• 6 weeks foundation — methodology, mindset, market</li>
-            <li>• 4 weeks brand + pricing — niche, rate card, positioning</li>
-            <li>• 2 weeks first client outreach — pipeline, intake, close</li>
-            <li>• Capstone project — your first real engagement</li>
+            <li>• {t("cohort.b1")}</li>
+            <li>• {t("cohort.b2")}</li>
+            <li>• {t("cohort.b3")}</li>
+            <li>• {t("cohort.b4")}</li>
           </ul>
-          <p className="mt-6 text-sm text-muted-foreground">
-            Government-recognised certification (MEPSC NSQF Level 5).
-          </p>
+          <p className="mt-6 text-sm text-muted-foreground">{t("cohort.cert")}</p>
         </div>
         <div className="rounded-2xl border border-border bg-card p-6 lg:p-8">
-          <p className="text-xs uppercase tracking-wider text-muted-foreground">Next batch</p>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">{t("cohort.next")}</p>
           <p className="mt-2 font-display text-2xl text-primary">
-            {loaded ? (cohort?.name ?? "TBA") : "Loading…"}
+            {loaded ? (cohort?.name ?? t("cohort.tba")) : t("cohort.loading")}
           </p>
           <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
             <div>
-              <p className="text-muted-foreground">Seats</p>
+              <p className="text-muted-foreground">{t("cohort.seats")}</p>
               <p className="font-medium text-foreground">
                 {cohort ? `${cohort.remaining}/${cohort.max_seats}` : "—"}
               </p>
             </div>
             <div>
-              <p className="text-muted-foreground">Price</p>
+              <p className="text-muted-foreground">{t("cohort.price")}</p>
               <p className="font-medium text-foreground">
                 {formatINR(30000)}{" "}
                 <span className="text-xs text-muted-foreground">
-                  ({formatINR(35000)} from Cohort 2)
+                  {t("cohort.priceNote", { next: formatINR(35000) })}
                 </span>
               </p>
             </div>
           </div>
           <Button className="mt-6 w-full" asChild>
             <Link to="/apply" onClick={() => ctaClick("cohort_apply", "/apply")}>
-              Apply for the next batch <ArrowRight className="h-4 w-4" />
+              {t("cohort.apply")} <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
         </div>
@@ -549,11 +550,10 @@ const SERVICES = [
 ] as const;
 
 function Services() {
+  const { t } = useTranslation();
   return (
     <Section id="services" className="bg-secondary/40">
-      <h2 className="font-display text-3xl md:text-4xl text-primary">
-        We do the boring stuff for you
-      </h2>
+      <h2 className="font-display text-3xl md:text-4xl text-primary">{t("services.title")}</h2>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {SERVICES.map((s) => (
           <Link
@@ -567,7 +567,7 @@ function Services() {
             <p className="mt-2 text-sm text-muted-foreground flex-1">{s.line}</p>
             <p className="mt-4 font-display text-xl text-primary">{formatINR(s.price)}</p>
             <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent">
-              Get this done <ArrowRight className="h-4 w-4" />
+              {t("services.getThis")} <ArrowRight className="h-4 w-4" />
             </span>
           </Link>
         ))}

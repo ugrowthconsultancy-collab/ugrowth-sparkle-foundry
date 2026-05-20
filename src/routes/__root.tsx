@@ -13,6 +13,8 @@ import appCss from "../styles.css?url";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/hooks/use-auth";
+import "@/lib/i18n";
+import { useLanguage } from "@/hooks/use-language";
 
 function NotFoundComponent() {
   return (
@@ -138,6 +140,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
+        <LanguageBoot />
         <div className="flex min-h-screen flex-col bg-background">
           {!isAdmin && <Header />}
           <main className="flex-1 flex flex-col">
@@ -148,4 +151,9 @@ function RootComponent() {
       </AuthProvider>
     </QueryClientProvider>
   );
+}
+
+function LanguageBoot() {
+  useLanguage();
+  return null;
 }

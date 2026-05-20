@@ -1,38 +1,38 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin, Instagram, Youtube } from "lucide-react";
-
-const COLS = [
-  {
-    title: "Products",
-    links: [
-      { label: "Mentor Marketplace", to: "/find-a-mentor" },
-      { label: "Cohort Programme", to: "/cohort" },
-      { label: "Done-for-you Services", to: "/services" },
-      { label: "Free Tools", to: "/resources" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { label: "Free Tools", to: "/resources" },
-      { label: "Brochures", to: "/resources" },
-      { label: "Blog", to: "/blog" },
-      { label: "FAQ", to: "/faq" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", to: "/privacy" },
-      { label: "Terms of Service", to: "/terms" },
-      { label: "DPDP Compliance", to: "/dpdp" },
-      { label: "Grievance Officer", to: "/grievance" },
-      { label: "Contact", to: "/contact" },
-    ],
-  },
-] as const;
+import { useTranslation } from "react-i18next";
 
 export function Footer() {
+  const { t } = useTranslation();
+  const COLS = [
+    {
+      title: "PRODUCTS",
+      links: [
+        { label: t("nav.findMentor"), to: "/find-a-mentor" },
+        { label: t("nav.cohort"), to: "/cohort" },
+        { label: t("nav.services"), to: "/services" },
+        { label: t("nav.resources"), to: "/resources" },
+      ],
+    },
+    {
+      title: "RESOURCES",
+      links: [
+        { label: t("nav.resources"), to: "/resources" },
+        { label: "Blog", to: "/blog" },
+        { label: "FAQ", to: "/faq" },
+      ],
+    },
+    {
+      title: "LEGAL",
+      links: [
+        { label: "Privacy Policy", to: "/privacy" },
+        { label: "Terms of Service", to: "/terms" },
+        { label: "DPDP Compliance", to: "/dpdp" },
+        { label: "Grievance Officer", to: "/grievance" },
+        { label: "Contact", to: "/contact" },
+      ],
+    },
+  ] as const;
   return (
     <footer className="bg-card border-t border-border mt-auto">
       <div className="mx-auto max-w-[1280px] px-4 lg:px-6 py-12 lg:py-16">
@@ -42,8 +42,7 @@ export function Footer() {
               UGrowth Consultancy
             </div>
             <p className="mt-3 text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Free help to start your own practice in India. Real methodology, real
-              tools, real outcomes. No catch.
+              {t("footer.tagline")}
             </p>
             <p className="mt-4 text-xs text-muted-foreground">UGrowth Consultancy Pvt Ltd</p>
           </div>
@@ -71,16 +70,16 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-border grid gap-4 md:grid-cols-2">
           <div className="text-xs text-muted-foreground leading-relaxed">
-            Methodology certified by MEPSC, Ministry of Skill Development &amp; Entrepreneurship.
+            {t("footer.cert")}
           </div>
           <div className="text-xs text-muted-foreground leading-relaxed md:text-right">
-            University of Mumbai Board of Studies affiliated.
+            {t("footer.affil")}
           </div>
         </div>
 
         <div className="mt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground">
-            © 2026 UGrowth Consultancy Pvt Ltd. Made with care for Indian small business owners.
+            {t("footer.copyright")}
           </p>
           <div className="flex items-center gap-2">
             <a

@@ -1,0 +1,155 @@
+{
+  "nav": {
+    "findMentor": "मेंटर खोजें",
+    "resources": "संसाधन",
+    "cohort": "हमारी ट्रेनिंग",
+    "services": "हमारी सेवाएं",
+    "about": "हमारे बारे में",
+    "login": "लॉगिन",
+    "dashboard": "मेरा Dashboard",
+    "profile": "मेरी Profile",
+    "settings": "Settings",
+    "logout": "Logout",
+    "menu": "मेन्यू"
+  },
+  "hero": {
+    "title": "अपना खुद का काम शुरू करने में निःशुल्क मदद।",
+    "subtitle": "असली तरीका। असली औज़ार। असली मेंटर। कोई जाल नहीं।",
+    "ctaPrimary": "मुफ़्त AI सलाहकार से बात करें",
+    "ctaSecondary": "मुफ़्त गाइड डाउनलोड करें",
+    "badge1": "MEPSC, भारत सरकार द्वारा प्रमाणित",
+    "badge2": "Mumbai University Board of Studies से संबद्ध",
+    "badge3": "UGrowth Consultancy Pvt Ltd"
+  },
+  "audience": {
+    "title": "आप कौन हैं?",
+    "showMe": "मुझे बताएं कैसे",
+    "items": {
+      "stuck-professional": { "title": "मेरे पास नौकरी है। अब अपना काम शुरू करना है।", "sub": "अपना exit plan करें।" },
+      "side-hustler": { "title": "मैं पहले से कुछ काम कर रहा/रही हूं।", "sub": "Side काम को असली practice बनाएं।" },
+      "returning-to-work": { "title": "मैंने ब्रेक लिया था। अब वापस आना है।", "sub": "अपनी शर्तों पर वापसी।" },
+      "rising-graduate": { "title": "मैं युवा हूं। नौकरी नहीं करनी।", "sub": "CV नहीं, practice बनाएं।" },
+      "first-gen-consultant": { "title": "मेरे क्लाइंट हैं। मुझे एक सिस्टम चाहिए।", "sub": "Pricing, intake, delivery — सब सही।" },
+      "tier2-dreamer": { "title": "मैं छोटे शहर में हूं। यहीं से शुरू करना है।", "sub": "Local बनाएं, कहीं भी बेचें।" }
+    }
+  },
+  "stories": {
+    "title": "जिन founders ने यह किया है",
+    "more": "और founder stories",
+    "moreSub": "जल्द ही जुड़ेंगे"
+  },
+  "ai": {
+    "title": "हमारे AI सलाहकार से बात करें",
+    "subtitle": "अपना काम शुरू करने या चलाने के बारे में कुछ भी पूछें। पहले 5 questions मुफ़्त, बिना signup के।",
+    "start": "अपनी बातचीत शुरू करें"
+  },
+  "tools": {
+    "title": "5 मिनट में असली समस्या हल करने वाले मुफ़्त औज़ार",
+    "tryFree": "मुफ़्त में आज़माएं"
+  },
+  "cohort": {
+    "title": "हमारी 12 हफ़्ते की ट्रेनिंग",
+    "b1": "6 हफ़्ते foundation — methodology, mindset, market",
+    "b2": "4 हफ़्ते brand + pricing — niche, rate card, positioning",
+    "b3": "2 हफ़्ते पहला client outreach — pipeline, intake, close",
+    "b4": "Capstone project — आपका पहला असली engagement",
+    "cert": "सरकारी मान्यता प्राप्त सर्टिफिकेट (MEPSC NSQF Level 5)।",
+    "next": "अगला Batch",
+    "seats": "Seats",
+    "price": "Price",
+    "priceNote": "(Cohort 2 से {next})",
+    "apply": "अगले batch के लिए apply करें",
+    "tba": "जल्द घोषित",
+    "loading": "लोड हो रहा है…"
+  },
+  "services": {
+    "title": "बोरिंग काम हम करेंगे आपके लिए",
+    "getThis": "यह करवाएं"
+  },
+  "teaser": {
+    "practiceLaunch": "अपने पहले 10 clients लाएं असली marketing engine के साथ। AI + असली इंसान। Indian context। ₹4,999/महीना।",
+    "see": "देखें कैसे काम करता है",
+    "circles": "अकेले मत करिए। अपने शहर के 10 दूसरे Indian founders के curated circle में जुड़ें। Weekly Zoom + monthly चाय मीटअप।",
+    "find": "अपना circle खोजें"
+  },
+  "newsletter": {
+    "title": "हर हफ़्ते मुफ़्त सलाह, Indian founders के लिए",
+    "subtitle": "हर हफ़्ते 1 useful template + 1 ईमानदार सलाह। कोई spam नहीं।",
+    "subscribe": "Subscribe करें",
+    "subscribing": "Subscribe हो रहा है…",
+    "thanks": "धन्यवाद। पहला email अगले मंगलवार को भेजेंगे।",
+    "agree": "Subscribe करके आप सहमत हैं हमारी",
+    "privacy": "Privacy Policy",
+    "invalid": "सही email डालें।",
+    "error": "कुछ गलत हुआ। फिर से कोशिश करें।"
+  },
+  "finalCta": {
+    "title": "Mentoring हमेशा मुफ़्त। आज ही शुरू करें।",
+    "primary": "AI सलाहकार से बात करें",
+    "secondary": "गाइड डाउनलोड करें"
+  },
+  "sticky": { "label": "AI Advisor मुफ़्त में आज़माएं" },
+  "footer": {
+    "tagline": "अपना खुद का काम शुरू करने में निःशुल्क मदद। असली तरीका, असली औज़ार, असली नतीजे। कोई जाल नहीं।",
+    "cert": "Methodology MEPSC, Ministry of Skill Development & Entrepreneurship द्वारा प्रमाणित।",
+    "affil": "Mumbai University Board of Studies से संबद्ध।",
+    "copyright": "© 2026 UGrowth Consultancy Pvt Ltd। Indian small business owners के लिए पूरे प्यार से बनाया गया।"
+  },
+  "login": {
+    "title": "UGrowth Consultancy में लॉगिन करें",
+    "subtitle": "अपना email डालें। हम एक one-time लॉगिन लिंक भेजेंगे।",
+    "emailLabel": "Email पता",
+    "send": "मुझे लॉगिन link भेजें",
+    "sending": "भेज रहे हैं...",
+    "both": "Link लॉगिन और signup दोनों के लिए काम करता है।",
+    "consent": "मैं Privacy Policy और Terms of Use से सहमत हूं। मेरा data मेरा है, मैं कभी भी delete करवा सकता/सकती हूं।",
+    "marketing": "हर हफ़्ते 1 useful template भेजें। कोई spam नहीं, कभी भी unsubscribe करें।",
+    "checkInbox": "अपना inbox देखें",
+    "sentTo": "हमने {{email}} पर link भेजा है। उसे क्लिक करके लॉगिन करें।",
+    "resend": "Link फिर से भेजें",
+    "resendIn": "{{s}}s में फिर भेजें",
+    "tryDifferent": "दूसरा email आज़माएं"
+  },
+  "onboarding": {
+    "step": "Step {{n}}, 3 में से",
+    "q1": "अभी आप क्या कर रहे हैं?",
+    "q1Sub": "अपनी स्थिति के सबसे करीब वाला चुनें।",
+    "continue": "आगे बढ़ें",
+    "back": "वापस",
+    "q2": "आप किस शहर में हैं?",
+    "city": "शहर",
+    "cityPlaceholder": "अपना शहर लिखना शुरू करें...",
+    "other": "अन्य (बताएं)",
+    "enterCity": "अपना शहर लिखें",
+    "pin": "PIN code",
+    "pinHint": "6 अंक",
+    "pinError": "6 अंकों का Indian PIN code डालें।",
+    "q3": "आपकी पसंदीदा भाषा क्या है?",
+    "finish": "पूरा करें",
+    "saving": "सेव हो रहा है...",
+    "roles": {
+      "salaried": "मेरे पास नौकरी है, कुछ अपना शुरू करना है",
+      "side_hustling": "मैं पहले से कुछ side काम कर रहा/रही हूं",
+      "returning_homemaker": "मैंने career break लिया था, अब वापस आना है",
+      "first_gen_consultant": "अभी कॉलेज खत्म हुआ, नौकरी नहीं करनी",
+      "fully_independent": "मेरे क्लाइंट हैं, मुझे एक सिस्टम चाहिए",
+      "tier2_dreamer": "मैं छोटे शहर में हूं, यहीं से शुरू करना है"
+    }
+  },
+  "dashboard": {
+    "welcome": "स्वागत है, {{name}}",
+    "comingSoon": "जल्द आ रहा है",
+    "cards": {
+      "ai": "AI सलाहकार",
+      "tools": "मुफ़्त औज़ार",
+      "cohort": "Cohort स्थिति",
+      "orders": "मेरे Orders"
+    }
+  },
+  "brochure": {
+    "title": "मुफ़्त गाइड डाउनलोड करें",
+    "desc": "हम आपके email पर पूरा playbook PDF भेजेंगे। जल्द उपलब्ध।",
+    "submit": "मुझे email करें",
+    "note": "गाइड delivery अगले update में चालू होगी।"
+  }
+}
