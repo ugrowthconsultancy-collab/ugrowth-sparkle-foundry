@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,23 +12,29 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/hooks/use-auth";
+import { useLanguage } from "@/hooks/use-language";
 import { supabase } from "@/integrations/supabase/client";
-
-const NAV = [
-  { to: "/find-a-mentor", label: "Find a Mentor" },
-  { to: "/resources", label: "Resources" },
-  { to: "/cohort", label: "Cohort" },
-  { to: "/services", label: "Services" },
-  { to: "/about", label: "About" },
-] as const;
 
 export function Header() {
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
-  const [lang, setLang] = React.useState<"EN" | "HI">("EN");
+  const { t } = useTranslation();
+  const { lang, setLang } = useLanguage();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [displayName, setDisplayName] = React.useState<string>("");
+
+  const NAV = React.useMemo(
+    () =>
+      [
+        { to: "/find-a-mentor", label: t("nav.findMentor") },
+        { to: "/resources", label: t("nav.resources") },
+        { to: "/cohort", label: t("nav.cohort") },
+        { to: "/services", label: t("nav.services") },
+        { to: "/about", label: t("nav.about") },
+      ] as const,
+    [t],
+  );
 
   React.useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -95,20 +102,20 @@ export function Header() {
         <div className="hidden lg:flex items-center gap-3">
           <LanguageToggle lang={lang} onChange={setLang} />
           {user ? (
-            <AvatarMenu initial={initial} onLogout={logout} />
+            <AvatarMenu initial={initial} onLogout={logout} t={t} />
           ) : (
             <Button variant="ghost" size="sm" asChild>
-              <Link to="/login">Login</Link>
+              <Link to="/login">{t("nav.login")}</Link>
             </Button>
           )}
         </div>
 
         <div className="lg:hidden flex items-center gap-2">
-          {user && <AvatarMenu initial={initial} onLogout={logout} />}
+          {user && <AvatarMenu initial={initial} onLogout={logout} t={t} />}
           <button
             type="button"
             className="inline-flex items-center justify-center min-h-11 min-w-11 rounded-md text-primary"
-            aria-label="Open menu"
+            aria-label={t("nav.menu")}
             aria-expanded={open}
             onClick={() => setOpen(true)}
           >
@@ -122,11 +129,11 @@ export function Header() {
           <div className="absolute inset-0 bg-foreground/30" onClick={() => setOpen(false)} />
           <div className="absolute right-0 top-0 h-full w-[85%] max-w-sm bg-card shadow-xl flex flex-col">
             <div className="flex items-center justify-between px-4 h-16 border-b border-border">
-              <span className="font-display text-lg font-semibold text-primary">Menu</span>
+              <span className="font-display text-lg font-semibold text-primary">{t("nav.menu")}</span>
               <button
                 type="button"
                 className="inline-flex items-center justify-center min-h-11 min-w-11 rounded-md text-primary"
-                aria-label="Close menu"
+                aria-label="Close"
                 onClick={() => setOpen(false)}
               >
                 <X className="h-6 w-6" />
@@ -150,7 +157,7 @@ export function Header() {
                 <>
                   <Button variant="ghost" className="w-full" asChild>
                     <Link to="/dashboard" onClick={() => setOpen(false)}>
-                      My Dashboard
+                      {t("nav.dashboard")}
                     </Link>
                   </Button>
                   <Button
@@ -161,13 +168,13 @@ export function Header() {
                       logout();
                     }}
                   >
-                    Logout
+                    {t("nav.logout")}
                   </Button>
                 </>
               ) : (
                 <Button variant="ghost" className="w-full" asChild>
                   <Link to="/login" onClick={() => setOpen(false)}>
-                    Login
+                    {t("nav.login")}
                   </Link>
                 </Button>
               )}
@@ -179,7 +186,15 @@ export function Header() {
   );
 }
 
-function AvatarMenu({ initial, onLogout }: { initial: string; onLogout: () => void }) {
+function AvatarMenu({
+  initial,
+  onLogout,
+  t,
+}: {
+  initial: string;
+  onLogout: () => void;
+  t: (k: string) => string;
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -193,16 +208,16 @@ function AvatarMenu({ initial, onLogout }: { initial: string; onLogout: () => vo
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
         <DropdownMenuItem asChild>
-          <Link to="/dashboard">My Dashboard</Link>
+          <Link to="/dashboard">{t("nav.dashboard")}</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/profile">My Profile</Link>
+          <Link to="/profile">{t("nav.profile")}</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link to="/settings">Settings</Link>
+          <Link to="/settings">{t("nav.settings")}</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={onLogout}>Logout</DropdownMenuItem>
+        <DropdownMenuItem onClick={onLogout}>{t("nav.logout")}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
@@ -212,8 +227,8 @@ function LanguageToggle({
   lang,
   onChange,
 }: {
-  lang: "EN" | "HI";
-  onChange: (l: "EN" | "HI") => void;
+  lang: "en" | "hi";
+  onChange: (l: "en" | "hi") => void;
 }) {
   return (
     <div
@@ -223,22 +238,22 @@ function LanguageToggle({
     >
       <button
         type="button"
-        onClick={() => onChange("EN")}
-        aria-pressed={lang === "EN"}
+        onClick={() => onChange("en")}
+        aria-pressed={lang === "en"}
         className={cn(
           "px-3 py-1 text-xs font-medium rounded-full transition-colors",
-          lang === "EN" ? "bg-primary text-primary-foreground" : "text-muted-foreground",
+          lang === "en" ? "bg-primary text-primary-foreground" : "text-muted-foreground",
         )}
       >
         EN
       </button>
       <button
         type="button"
-        onClick={() => onChange("HI")}
-        aria-pressed={lang === "HI"}
+        onClick={() => onChange("hi")}
+        aria-pressed={lang === "hi"}
         className={cn(
           "px-3 py-1 text-xs font-medium rounded-full transition-colors font-hindi",
-          lang === "HI" ? "bg-primary text-primary-foreground" : "text-muted-foreground",
+          lang === "hi" ? "bg-primary text-primary-foreground" : "text-muted-foreground",
         )}
       >
         हिंदी

@@ -1,38 +1,38 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin, Instagram, Youtube } from "lucide-react";
-
-const COLS = [
-  {
-    title: "Products",
-    links: [
-      { label: "Mentor Marketplace", to: "/find-a-mentor" },
-      { label: "Cohort Programme", to: "/cohort" },
-      { label: "Done-for-you Services", to: "/services" },
-      { label: "Free Tools", to: "/resources" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { label: "Free Tools", to: "/resources" },
-      { label: "Brochures", to: "/resources" },
-      { label: "Blog", to: "/blog" },
-      { label: "FAQ", to: "/faq" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Privacy Policy", to: "/privacy" },
-      { label: "Terms of Service", to: "/terms" },
-      { label: "DPDP Compliance", to: "/dpdp" },
-      { label: "Grievance Officer", to: "/grievance" },
-      { label: "Contact", to: "/contact" },
-    ],
-  },
-] as const;
+import { useTranslation } from "react-i18next";
 
 export function Footer() {
+  const { t } = useTranslation();
+  const COLS = [
+    {
+      title: "PRODUCTS",
+      links: [
+        { label: t("nav.findMentor"), to: "/find-a-mentor" },
+        { label: t("nav.cohort"), to: "/cohort" },
+        { label: t("nav.services"), to: "/services" },
+        { label: t("nav.resources"), to: "/resources" },
+      ],
+    },
+    {
+      title: "RESOURCES",
+      links: [
+        { label: t("nav.resources"), to: "/resources" },
+        { label: "Blog", to: "/blog" },
+        { label: "FAQ", to: "/faq" },
+      ],
+    },
+    {
+      title: "LEGAL",
+      links: [
+        { label: "Privacy Policy", to: "/privacy" },
+        { label: "Terms of Service", to: "/terms" },
+        { label: "DPDP Compliance", to: "/dpdp" },
+        { label: "Grievance Officer", to: "/grievance" },
+        { label: "Contact", to: "/contact" },
+      ],
+    },
+  ] as const;
   return (
     <footer className="bg-card border-t border-border mt-auto">
       <div className="mx-auto max-w-[1280px] px-4 lg:px-6 py-12 lg:py-16">
