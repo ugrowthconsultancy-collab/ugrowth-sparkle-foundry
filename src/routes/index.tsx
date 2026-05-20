@@ -410,7 +410,7 @@ function AiPreview() {
             to="/ai-advisor"
             onClick={() => ctaClick("ai_preview_start_conversation", "/ai-advisor")}
           >
-            Start your own conversation <ArrowRight className="h-4 w-4" />
+            {t("ai.start")} <ArrowRight className="h-4 w-4" />
           </Link>
         </Button>
       </div>
@@ -430,25 +430,24 @@ const TOOLS = [
 ] as const;
 
 function Tools() {
+  const { t } = useTranslation();
   return (
     <Section id="tools" className="bg-secondary/40">
-      <h2 className="font-display text-3xl md:text-4xl text-primary">
-        Free tools that solve real problems in 5 minutes
-      </h2>
+      <h2 className="font-display text-3xl md:text-4xl text-primary">{t("tools.title")}</h2>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {TOOLS.map((t) => (
+        {TOOLS.map((tool) => (
           <Link
-            key={t.slug}
+            key={tool.slug}
             to="/tools/$slug"
-            params={{ slug: t.slug }}
-            onClick={() => ctaClick(`tool_${t.slug}`, `/tools/${t.slug}`)}
+            params={{ slug: tool.slug }}
+            onClick={() => ctaClick(`tool_${tool.slug}`, `/tools/${tool.slug}`)}
             className="group rounded-xl border border-border bg-card p-5 hover:shadow-md hover:border-accent/50 transition-all flex flex-col"
           >
-            <t.icon className="h-6 w-6 text-accent" />
-            <h3 className="mt-4 font-display text-base text-primary leading-snug">{t.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground flex-1">{t.desc}</p>
+            <tool.icon className="h-6 w-6 text-accent" />
+            <h3 className="mt-4 font-display text-base text-primary leading-snug">{tool.title}</h3>
+            <p className="mt-2 text-sm text-muted-foreground flex-1">{tool.desc}</p>
             <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
-              Try it free <ArrowRight className="h-4 w-4" />
+              {t("tools.tryFree")} <ArrowRight className="h-4 w-4" />
             </span>
           </Link>
         ))}
@@ -492,46 +491,45 @@ function CohortBlock() {
     })();
   }, []);
 
+  const { t } = useTranslation();
   return (
     <Section id="cohort">
       <div className="grid lg:grid-cols-2 gap-10 items-start">
         <div>
-          <h2 className="font-display text-3xl md:text-4xl text-primary">Our 12-week training</h2>
+          <h2 className="font-display text-3xl md:text-4xl text-primary">{t("cohort.title")}</h2>
           <ul className="mt-6 space-y-3 text-sm text-foreground">
-            <li>• 6 weeks foundation — methodology, mindset, market</li>
-            <li>• 4 weeks brand + pricing — niche, rate card, positioning</li>
-            <li>• 2 weeks first client outreach — pipeline, intake, close</li>
-            <li>• Capstone project — your first real engagement</li>
+            <li>• {t("cohort.b1")}</li>
+            <li>• {t("cohort.b2")}</li>
+            <li>• {t("cohort.b3")}</li>
+            <li>• {t("cohort.b4")}</li>
           </ul>
-          <p className="mt-6 text-sm text-muted-foreground">
-            Government-recognised certification (MEPSC NSQF Level 5).
-          </p>
+          <p className="mt-6 text-sm text-muted-foreground">{t("cohort.cert")}</p>
         </div>
         <div className="rounded-2xl border border-border bg-card p-6 lg:p-8">
-          <p className="text-xs uppercase tracking-wider text-muted-foreground">Next batch</p>
+          <p className="text-xs uppercase tracking-wider text-muted-foreground">{t("cohort.next")}</p>
           <p className="mt-2 font-display text-2xl text-primary">
-            {loaded ? (cohort?.name ?? "TBA") : "Loading…"}
+            {loaded ? (cohort?.name ?? t("cohort.tba")) : t("cohort.loading")}
           </p>
           <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
             <div>
-              <p className="text-muted-foreground">Seats</p>
+              <p className="text-muted-foreground">{t("cohort.seats")}</p>
               <p className="font-medium text-foreground">
                 {cohort ? `${cohort.remaining}/${cohort.max_seats}` : "—"}
               </p>
             </div>
             <div>
-              <p className="text-muted-foreground">Price</p>
+              <p className="text-muted-foreground">{t("cohort.price")}</p>
               <p className="font-medium text-foreground">
                 {formatINR(30000)}{" "}
                 <span className="text-xs text-muted-foreground">
-                  ({formatINR(35000)} from Cohort 2)
+                  {t("cohort.priceNote", { next: formatINR(35000) })}
                 </span>
               </p>
             </div>
           </div>
           <Button className="mt-6 w-full" asChild>
             <Link to="/apply" onClick={() => ctaClick("cohort_apply", "/apply")}>
-              Apply for the next batch <ArrowRight className="h-4 w-4" />
+              {t("cohort.apply")} <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
         </div>
@@ -552,11 +550,10 @@ const SERVICES = [
 ] as const;
 
 function Services() {
+  const { t } = useTranslation();
   return (
     <Section id="services" className="bg-secondary/40">
-      <h2 className="font-display text-3xl md:text-4xl text-primary">
-        We do the boring stuff for you
-      </h2>
+      <h2 className="font-display text-3xl md:text-4xl text-primary">{t("services.title")}</h2>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {SERVICES.map((s) => (
           <Link
@@ -570,7 +567,7 @@ function Services() {
             <p className="mt-2 text-sm text-muted-foreground flex-1">{s.line}</p>
             <p className="mt-4 font-display text-xl text-primary">{formatINR(s.price)}</p>
             <span className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent">
-              Get this done <ArrowRight className="h-4 w-4" />
+              {t("services.getThis")} <ArrowRight className="h-4 w-4" />
             </span>
           </Link>
         ))}
