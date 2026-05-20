@@ -67,8 +67,16 @@ function CallbackPage() {
         return;
       }
 
+      let postLogin: string | null = null;
+      try {
+        postLogin = sessionStorage.getItem("postLoginRedirect");
+        if (postLogin) sessionStorage.removeItem("postLoginRedirect");
+      } catch {}
+
       if (!profile.current_role) {
         if (!cancelled) navigate({ to: "/onboarding" });
+      } else if (postLogin && postLogin.startsWith("/")) {
+        if (!cancelled) navigate({ to: postLogin });
       } else {
         if (!cancelled) navigate({ to: "/dashboard" });
       }
