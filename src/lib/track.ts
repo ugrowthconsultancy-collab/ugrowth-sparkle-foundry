@@ -16,7 +16,7 @@ export async function track(event_name: string, payload: Record<string, unknown>
     const { data } = await supabase.auth.getUser();
     await supabase.from("campaign_tracking").insert({
       event_name,
-      event_payload: payload,
+      event_payload: payload as never,
       session_id: getSessionId(),
       landing_page: window.location.pathname,
       referrer_url: document.referrer || null,
